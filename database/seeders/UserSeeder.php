@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -17,11 +18,9 @@ class UserSeeder extends Seeder
     {
         User::truncate();
         User::create([
-            'name' => 'Admin 1',
             'level' => 'admin',
-            'email' => 'tes@tes.com',
-            'password' => bcrypt('12345'),
-            'remember_token' => Str::random(60),
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123'),
         ]);
     }
 }

@@ -24,7 +24,7 @@
                             <h4 class="text-xl font-bold mb-2">Kiram Park</h4>
                             <p class="text-gray-700 mb-4">Kiram Park merupakan salah satu objek wisata yang populer di
                                 kawasan Kabupaten Banjar, provinsi Kalimantan Selatan</p>
-                            <a href="https://dispar.kalselprov.go.id/kiram-park"
+                            <a href="#"
                                 class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <h4 class="text-xl font-bold mb-2">Menara Pandang</h4>
                             <p class="text-gray-700 mb-4">Tempat ini menawarkan panorama Kota Banjarmasin yang
                                 menakjubkan dari ketinggian merupakan tujuan wisata populer</p>
-                            <a href="https://dispar.kalselprov.go.id/menara-pandang-kalsel"
+                            <a href="#"
                                 class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-black">Explore</a>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <h4 class="text-xl font-bold mb-2">Pulau Kembang</h4>
                             <p class="text-gray-700 mb-4">Pulau Kembang identik dengan pulau monyet, wisata ini terletak
                                 di dalam kawasan hutan di Kabupaten Barito Kuala</p>
-                            <a href="https://dispar.kalselprov.go.id/pulau-kembang"
+                            <a href="#"
                                 class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <h4 class="text-xl font-bold mb-2">Pulau Kembang</h4>
                             <p class="text-gray-700 mb-4">Pulau Kembang identik dengan pulau monyet, wisata ini terletak
                                 di dalam kawasan hutan di Kabupaten Barito Kuala</p>
-                            <a href="https://dispar.kalselprov.go.id/pulau-kembang"
+                            <a href="#"
                                 class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                             <h4 class="text-xl font-bold mb-2">Pulau Kembang</h4>
                             <p class="text-gray-700 mb-4">Pulau Kembang identik dengan pulau monyet, wisata ini terletak
                                 di dalam kawasan hutan di Kabupaten Barito Kuala</p>
-                            <a href="https://dispar.kalselprov.go.id/pulau-kembang"
+                            <a href="#"
                                 class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             <h4 class="text-xl font-bold mb-2">Pulau Kembang</h4>
                             <p class="text-gray-700 mb-4">Pulau Kembang identik dengan pulau monyet, wisata ini terletak
                                 di dalam kawasan hutan di Kabupaten Barito Kuala</p>
-                            <a href="https://dispar.kalselprov.go.id/pulau-kembang"
+                            <a href="#"
                                 class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
                         </div>
                     </div>

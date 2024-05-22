@@ -22,11 +22,27 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/registrasi', [LoginController::class, 'registrasi'])->name('registrasi');
 
-Route::post('/simpanregistrasi', [LoginController::class, 'simpanregistrasi'])->name('simpanregistrasi');
+Route::post('/simpanregistrasi', [RegistrasiController::class, 'simpanregistrasi'])->name('simpanregistrasi');
 
 Route::get('/data_kuliner', [KulinerController::class, 'index'])-> name('data_kuliner');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::group(['middleware'=> ['auth']], function(){
+    
+    Route::get('/', function () {
+        return view ('index');
+    });
+
+    Route::get('/tambah-data', function () {
+        return view('admin.tambah-data');
+    });
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+    Route::get('/data-wisata', [WisataController::class, 'index'])->name('data-wisata');
+
+    Route::post('/simpan-data', [WisataController::class, 'simpandata'])->name('simpan-data');
+
+});
 
 
 

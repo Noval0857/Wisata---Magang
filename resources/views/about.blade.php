@@ -7,6 +7,7 @@
     <title>About</title>
 </head>
 <body>
+    <a href="{{ url('/') }}">Home</a>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam fugit obcaecati consequatur aperiam sunt quo architecto maiores optio tempora alias? Quos harum minima illo non impedit architecto veniam doloribus unde.</p>
 </body>
 </html>
