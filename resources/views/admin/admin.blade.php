@@ -20,29 +20,55 @@
         <!-- start about -->
         <section class="relative px-4 py-16 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 lg:py-12">
             <div class="container mx-auto flex flex-wrap justify-center">
-
-                <!-- Pasar Terapung -->
-                <div class="w-full md:w-1/3 p-4 animate-fadeIn">
-                    <div class="bg-white rounded-lg border border-gray-300 overflow-hidden shadow-md p-2">
-                        <img src="{{ asset('images/image.png') }}" alt="Kiram Park" class="w-full h-auto">
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold mb-2">Kiram Park</h4>
-                            <p class="text-gray-700 mb-4">Kiram Park merupakan salah satu objek wisata yang populer di
-                                kawasan Kabupaten Banjar, provinsi Kalimantan Selatan</p>
-                            <a href="#" class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
-                            <a href="#" class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Hapus</a>
+                @foreach ($wisatas as $wisata)
+                    <!-- Wisata Item -->
+                    <div class="w-full md:w-1/3 p-4 animate-fadeIn">
+                        <div class="bg-white rounded-lg border border-gray-300 overflow-hidden shadow-md p-2">
+                            <img src="{{ asset('images/image.png') }}" class="w-full h-auto">
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold mb-2">{{ $wisata->nama_wisata }}</h4>
+                                <p class="text-gray-700 mb-4">{{ $wisata->deskripsi }}</p>
+                                <a href="{{ route('ubah-data-wisata', $wisata->id_wisata) }}"
+                                    class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
+                                <a href="#" class="inline-block bg-red-500 text-white px-4 py-2 rounded"
+                                    onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $wisata->id_wisata }}').submit(); }">Hapus</a>
+                                <form id="delete-form-{{ $wisata->id_wisata }}"
+                                    action="{{ route('hapus-data-wisata', $wisata->id_wisata) }}"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
             </div>
-
-
         </section>
         <!-- end about -->
     </main>
 
-
-
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @elseif (session('warning'))
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ session('warning') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
+    </script>
 </body>
 
 </html>

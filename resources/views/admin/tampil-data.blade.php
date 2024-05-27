@@ -38,12 +38,12 @@
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->deskripsi }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->alamat }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">
-                                    <a href="{{ url('ubah-pengguna', $item->id) }}"
+                                    <a href="{{ route('ubah-data-wisata', $item->id_wisata) }}"
                                         class="text-blue-500 hover:text-blue-700">
                                         Edit
                                     </a>
                                     |
-                                    <a href="{{ url('delete-data/' . $item->id) }}"
+                                    <a href="{{ route('hapus-data-wisata', $item->id_wisata) }}"
                                         class="text-red-500 hover:text-red-700">
                                         Hapus
                                     </a>
@@ -55,6 +55,29 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @elseif (session('warning'))
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ session('warning') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
+    </script>
 </body>
 
 </html>

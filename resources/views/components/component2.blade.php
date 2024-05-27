@@ -12,7 +12,7 @@
                     sejarah, dan kuliner yang menarik untuk dijelajahi.</p>
             </div>
         </div>
-
+{{-- 
         <section class="relative bg-white py-12">
             <div class="container mx-auto flex flex-wrap justify-center">
 
@@ -103,4 +103,4 @@
 
             </div>
         </section>
-        <!-- end about -->
+        <!-- end about --> --}}

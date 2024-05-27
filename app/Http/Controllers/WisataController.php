@@ -9,14 +9,28 @@ use App\Models\Wisata;
 class WisataController extends Controller
 {
 
-    // Display a listing of the resource.
+    // tampilkan data
     public function index()
     {
         $wisatas = Wisata::all();
         return view('admin.tampil-data', compact('wisatas'));
     }
 
-    // Store a newly created resource in storage.
+    public function show()
+    {
+        $wisatas = Wisata::all();
+        return view('admin.admin', compact('wisatas'));
+    }
+
+    public function home()
+    {
+        $wisatas = Wisata::all();
+        return view('index', compact('wisatas'));
+    }
+
+
+
+    // tambah data
     public function simpandata(Request $request)
     {
         Wisata::create([
@@ -25,36 +39,34 @@ class WisataController extends Controller
             'alamat'        => $request->alamat,
         ]);
 
-        return redirect('admin')->with('success', 'Wisata created successfully.');
+        return redirect('data-wisata')->with('success', 'Wisata created successfully.');
     }
 
     //edit data wisata
-    public function edit($id_wisata){
-        $wisatas = Wisata::FindOrFail($id_wisata);
-        return view('admin.edit-data', compact('wisatas'));
+    public function ubahdata($id_wisata){
+        // $wisatas = Wisata::where('id_wisata', $id_wisata);
+        $wisatas = Wisata::findOrfail($id_wisata);
+        return view('admin.ubah-data-wisata', compact('wisatas'));
     }
 
     //simpan edit data wisata
-    public function simpanEditWisata(Request $request, $id_wisata)
+    public function updatedata(Request $request, $id_wisata)
     {
-        if($request->password){
-            // DIGUNAKAN UNTUK EDIT DATA NAMA, EMAIL, DAN PASSWORD
-            User::where('id', $id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-            ]);
+        $wisatas = Wisata::where('id_wisata', $id_wisata)->firstOrFail();
+        $wisatas->update([
+            'nama_wisata'   => $request->nama_wisata,
+            'deskripsi'     => $request->deskripsi,
+            'alamat'        => $request->alamat,
+        ]);
+    
+        return redirect('data-wisata')->with('success', 'Wisata updated successfully.');
+    }
 
-            return redirect ('data-pengguna')->with('success', 'Task Edited Successfully!');;
-        }else
-        if (!$request->password){
-            // DIGUNAKAN UNTUK EDIT DATA NAMA DAN EMAIL SAJA
-            User::where('id', $id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-            ]);
-
-            return redirect ('data-pengguna')->with('success', 'Task Edited Successfully!');
-        }
+    // hapus data
+    public function hapusdata($id_wisata)
+    {
+        $wisatas = Wisata::findOrFail($id_wisata);
+        $wisatas->delete();
+        return back()->with('success', 'Delete Successfully!');;
     }
 }
