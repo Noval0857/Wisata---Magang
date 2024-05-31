@@ -21,32 +21,44 @@
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
+                            <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Foto</th>
                             <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Nama Wisata</th>
                             <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Deskripsi</th>
                             <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Alamat</th>
+                            {{-- <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Google Map Url</th> --}}
                             <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($wisatas as $item)
                             <tr>
-                                {{-- <td class="border-b border-gray-200 px-4 py-2">
-                                    <img class="h-24 w-18 object-cover"
-                                        src="{{ asset('img/' . $item->gambar) }}">
-                                </td> --}}
+                                {{-- @foreach ($item->FotoWisata as $foto)
+                                <td class="border-b border-gray-200 px-4 py-2">
+                                    <img src="{{ Storage::url($foto->path) }}" alt="Foto {{ $item->nama_wisata }}">
+                                </td>
+                                @endforeach --}}
+                                <td class="border-b border-gray-200 px-4 py-2">
+                                    @foreach ($item->fotoWisata as $foto)
+                                        <img src="{{ Storage::url($foto->path) }}" alt="{{ $item->nama_wisata }}" class="w-72">
+                                    @endforeach
+                                </td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->nama_wisata }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->deskripsi }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->alamat }}</td>
+                                {{-- <td class="border-b border-gray-200 px-4 py-2">{{ $item->google_maps_url }}</td> --}}
                                 <td class="border-b border-gray-200 px-4 py-2">
                                     <a href="{{ route('ubah-data-wisata', $item->id_wisata) }}"
                                         class="text-blue-500 hover:text-blue-700">
                                         Edit
                                     </a>
                                     |
-                                    <a href="{{ route('hapus-data-wisata', $item->id_wisata) }}"
-                                        class="text-red-500 hover:text-red-700">
-                                        Hapus
-                                    </a>
+                                    <form action="{{ route('hapus-data-wisata', $item->id_wisata) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -58,7 +70,7 @@
 
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             @if (session('success'))
@@ -77,6 +89,27 @@
                 });
             @endif
         });
+
+        //     document.getElementById('deleteForm').addEventListener('submit', function(event) {
+        //     event.preventDefault(); // Prevent the form from submitting normally
+
+        //     if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+        //         fetch(this.action, {
+        //             method: 'DELETE',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        //             }
+        //         }).then(response => {
+        //             if (response.ok) {
+        //                 // Refresh halaman jika berhasil
+        //                 location.reload();
+        //             } else {
+        //                 // Tampilkan pesan kesalahan jika gagal
+        //                 alert('Gagal menghapus data.');
+        //             }
+        //         });
+        //     }
+        // });
     </script>
 </body>
 

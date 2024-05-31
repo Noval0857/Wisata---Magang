@@ -20,6 +20,7 @@ class User extends Authenticatable
         'email',
         'level',
         'password',
+        'level'
     ];
 
     /**
@@ -44,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isAdmin()
+{
+    return $this->level === 'admin';
+}
 }

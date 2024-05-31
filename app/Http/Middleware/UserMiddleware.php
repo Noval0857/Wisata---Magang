@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class CekLevel
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,11 @@ class CekLevel
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is authenticated and has the 'admin' level
-        if (Auth::check() && Auth::user()->level == 'admin') {
+
+        if(Auth::user()->usertype== 'admin'){
             return $next($request);
         }
 
-        // If not an admin, abort with a 404 or redirect to another page
-        return abort(404); // Or you can use redirect()->route('home') if you prefer
+        abort(401);
     }
 }

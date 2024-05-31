@@ -9,10 +9,8 @@ use Illuminate\Support\Str;
 
 class RegistrasiController extends Controller
 {
-    // UNTUK MENAMPUNG / MENYIMPAN DATA REGISTRASI USER
+    // UNTUK MENYIMPAN DATA REGISTRASI USER
     public function simpanregistrasi(Request $request) {
-        // digunakan untuk mencek data masuk atau tidak kedalam controller
-        // dd($request->all());
 
         User::create([
             'level' => 'umum',

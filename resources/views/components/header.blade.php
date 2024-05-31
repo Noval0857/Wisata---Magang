@@ -29,9 +29,9 @@
                                 href="{{ route('admin') }}">Admin</a>
                         </button>
                     @endif
-                    <li><a class="py-2 inline-block md:text-white md:hidden lg:block font-semibold"
+                    <li><a class="py-2 inline-block md:text-white md:hidden lg:block font-semibold hover:text-sky-500"
                             href="{{ url('/') }}">Home</a></li>
-                    <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold"
+                    <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold hover:text-sky-500"
                             href="{{ url('about') }}">About</a></li>
                     <li class="md:ml-4 relative" x-data="{ open: false }">
                         <a @click="open = !open"
@@ -51,21 +51,21 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold"
+                    <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold hover:text-sky-500"
                             href="#">Rekomendasi</a></li>
                     <li class="md:ml-4 md:hidden lg:block"><a
-                            class="py-2 inline-block md:text-white md:px-2 font-semibold" href="#">Informasi</a>
+                            class="py-2 inline-block md:text-white md:px-2 font-semibold hover:text-sky-500" href="#">Informasi</a>
                     </li>
-                    <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold"
+                    <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold hover:text-sky-500"
                             href="#">Contact</a></li>
                     @if (auth()->check())
                         <li class="md:ml-6 mt-3 md:mt-0">
-                            <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
+                            <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded hover:bg-sky-500"
                                 href="{{ route('logout') }}">Log Out</a>
                         </li>
                     @else
                         <li class="md:ml-6 mt-3 md:mt-0">
-                            <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
+                            <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded hover:bg-sky-500"
                                 href="{{ route('login') }}">Login</a>
                         </li>
                     @endif

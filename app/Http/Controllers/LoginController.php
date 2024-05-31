@@ -11,10 +11,6 @@ use Alert;
 
 class LoginController extends Controller
 {
-    // CEK DATA MASUK ATAU TIDAK
-    // public function postlogin(Request $request){
-    //     dd($request->all());
-    // }
 
     // CEK LOGIN, DISESUAIKAN DENGAN DATA YANG ADA DIDATABASE
     public function postlogin(Request $request) {
@@ -51,7 +47,7 @@ class LoginController extends Controller
     // CHECK AUTH USER, JIKA USER  LOGIN DAN INGIN KEMBALI KE URL LOGIN MAKA AKAN DI PINDAH KE URL INDEX
     public function login() {
         if (Auth::check()) {
-        return redirect('/home')->with('error', 'Not Found!');
+        return redirect('/')->with('error', 'Not Found!');
         }
         return view('Login.login')->with('error', 'Not Found!');
     }

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wisatas', function (Blueprint $table) {
-            $table->bigIncrements('id_wisata');
-            $table->string('nama_wisata');
-            $table->text('deskripsi')->nullable();
-            $table->text('alamat')->nullable();
-            $table->string('google_maps_url')->nullable();
+        Schema::create('foto_wisata', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_wisata')->constrained('wisatas')->onDelete('cascade');
+            $table->String('nama_foto_wisata');
+            $table->string('path');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wisatas');
+        Schema::dropIfExists('foto_wisata');
     }
 };

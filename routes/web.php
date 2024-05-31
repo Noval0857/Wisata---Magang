@@ -25,21 +25,22 @@ Route::post('/simpanregistrasi', [RegistrasiController::class, 'simpanregistrasi
 
 Route::get('/data_kuliner', [KulinerController::class, 'index'])->name('data_kuliner');
 
+Route::get('/detail-wisata/{nama_wisata}', [WisataController::class, 'detail'])->name('detail-wisata');
+
 // Protected routes (requires authentication)
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/admin', [WisataController::class, 'show'])->name('admin');
 
-    Route::get('/tambah-data', function () {
-        return view('admin.tambah-data');
-    });
+    Route::get('/admin', [WisataController::class, 'show'])->middleware('admin');
 
-    Route::get('/data-wisata', [WisataController::class, 'index'])->name('data-wisata');
+    Route::get('/tambah-data', [WisataController::class, 'viewTambah'])->middleware('admin');
 
-    Route::post('/simpan-data', [WisataController::class, 'simpandata'])->name('simpan-data');
+    Route::get('/data-wisata', [WisataController::class, 'index'])->middleware('admin');
 
-    Route::get('/ubah-data-wisata/{id_wisata}', [WisataController::class, 'ubahdata'])->name('ubah-data-wisata');
+    Route::post('/simpan-data', [WisataController::class, 'simpandata'])->middleware('admin');
 
-    Route::post('/simpan-data-wisata/{id_wisata}', [WisataController::class, 'updatedata'])->name('simpan-data-wisata');
+    Route::get('/ubah-data-wisata/{id_wisata}', [WisataController::class, 'ubahdata'])->middleware('admin');
 
-    Route::delete('/hapus-data-wisata/{id_wisata}', [WisataController::class, 'hapusdata'])->name('hapus-data-wisata'); 
+    Route::post('/simpan-data-wisata/{id_wisata}', [WisataController::class, 'updatedata'])->middleware('admin');
+
+    Route::delete('/hapus-data-wisata/{id_wisata}', [WisataController::class, 'hapusdata'])->middleware('admin'); 
 });

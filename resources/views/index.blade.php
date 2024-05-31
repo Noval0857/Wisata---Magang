@@ -43,7 +43,7 @@
                             <div class="p-6">
                                 <h4 class="text-xl font-bold mb-2">{{ $wisata->nama_wisata }}</h4>
                                 <p class="text-gray-700 mb-4">{{ $wisata->deskripsi }}</p>
-                                <a href="#"
+                                <a href="{{ route('detail-wisata', str_replace(' ', '-', $wisata->nama_wisata)) }}"
                                     class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
                             </div>
                         </div>
@@ -51,6 +51,7 @@
                 @endforeach
 
             </div>
+
 
             <script>
                 document.addEventListener('DOMContentLoaded', (event) => {
@@ -74,6 +75,6 @@
         </section>
     </main>
 </body>
-@include('komponen.footer')
+<x-footer></x-footer>
 
 </html>

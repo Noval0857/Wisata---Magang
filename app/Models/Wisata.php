@@ -13,6 +13,11 @@ class Wisata extends Model
     public $timestamps = false; // If your table has timestamps, ensure this is true
 
     protected $fillable = [
-        'nama_wisata', 'deskripsi', 'alamat'
+        'nama_wisata', 'deskripsi', 'alamat', 'google_maps_url'
     ];
+
+    public function fotoWisata()
+    {
+        return $this->hasMany(FotoWisata::class, 'id_wisata');
+    }
 }
