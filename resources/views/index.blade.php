@@ -39,7 +39,11 @@
                     <!-- Wisata Item -->
                     <div class="w-full md:w-1/3 p-4 animate-fadeIn">
                         <div class="bg-white rounded-lg border border-gray-300 overflow-hidden shadow-md p-2">
-                            <img src="{{ asset('images/image.png') }}" class="w-full h-auto">
+                            {{-- <img src="{{ asset('images/image.png') }}" class="w-full h-auto"> --}}
+                            @foreach ($wisata->fotoWisata as $foto)
+                                <img src="{{ Storage::url($foto->path) }}" alt="{{ $wisata->nama_wisata }}"
+                                    class="w-full h-auto">
+                            @endforeach
                             <div class="p-6">
                                 <h4 class="text-xl font-bold mb-2">{{ $wisata->nama_wisata }}</h4>
                                 <p class="text-gray-700 mb-4">{{ $wisata->deskripsi }}</p>
@@ -60,14 +64,16 @@
                             title: 'Berhasil!',
                             text: '{{ session('success') }}',
                             icon: 'success',
-                            confirmButtonText: 'OK'
+                            timer: 3000, // Waktu dalam milidetik (3000ms = 3 detik)
+                            showConfirmButton: false
                         });
                     @elseif (session('warning'))
                         Swal.fire({
                             title: 'Error!',
                             text: '{{ session('warning') }}',
                             icon: 'error',
-                            confirmButtonText: 'OK'
+                            timer: 3000, // Waktu dalam milidetik (3000ms = 3 detik)
+                            showConfirmButton: false
                         });
                     @endif
                 });

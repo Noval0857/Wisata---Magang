@@ -14,13 +14,12 @@ class UserMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-
-        if(Auth::user()->usertype== 'admin'){
+        if (Auth::check() && Auth::user()) {
             return $next($request);
         }
 
-        abort(401);
+        return redirect('/'); // or any other route for non-admin users
     }
 }

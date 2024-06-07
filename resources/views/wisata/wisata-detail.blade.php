@@ -39,9 +39,8 @@
                                     <p class="text-justify">{{ $wisatas->deskripsi }}</p>
                                 </div>
                                 <div class="mb-4">
-                                    <iframe width="100%" height="400" frameborder="0"
-                                            scrolling="no" marginheight="0" marginwidth="0"
-                                            src="{{ $wisatas->google_maps_url }}">
+                                    <iframe width="100%" height="400" frameborder="0" scrolling="no"
+                                        marginheight="0" marginwidth="0" src="{{ $wisatas->google_maps_url }}">
                                     </iframe>
                                 </div>
                                 {{-- <div class="border-2 border-solid">
@@ -58,111 +57,90 @@
                                     <p class="text-justify">{{ $wisatas->deskripsi }}</p>
                                 </div>
                             </section>
-                            {{-- <section
-                                class="section mcb-section mfn-default-section mcb-section-yxzgwykka default-width">
-                                <div class="mcb-background-overlay"></div>
-                                <div
-                                    class="section_wrapper mfn-wrapper-for-wraps mcb-section-inner mcb-section-inner-yxzgwykka">
-                                    <div class="wrap mcb-wrap mcb-wrap-jq3fgk0h7 one-second tablet-one-second laptop-one-second mobile-one clearfix"
-                                        data-desktop-col="one-second" data-laptop-col="laptop-one-second"
-                                        data-tablet-col="tablet-one-second" data-mobile-col="mobile-one">
-                                        <div
-                                            class="mcb-wrap-inner mcb-wrap-inner-jq3fgk0h7 mfn-module-wrapper mfn-wrapper-for-wraps">
-                                            <div class="mcb-wrap-background-overlay"></div>
-                                            <div
-                                                class="column mcb-column mcb-item-lcl2a3afc one laptop-one tablet-one mobile-one column_plain_text animate fadeInLeft">
-                                                <div
-                                                    class="mcb-column-inner mfn-module-wrapper mcb-column-inner-lcl2a3afc mcb-item-plain_text-inner">
-                                                    <div class="desc">
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="wrap mcb-wrap mcb-wrap-f4822oubb one-second tablet-one-second laptop-one-second mobile-one clearfix"
-                                            data-desktop-col="one-second" data-laptop-col="laptop-one-second"
-                                            data-tablet-col="tablet-one-second" data-mobile-col="mobile-one">
-                                            <div
-                                                class="mcb-wrap-inner mcb-wrap-inner-f4822oubb mfn-module-wrapper mfn-wrapper-for-wraps">
-                                                <div class="mcb-wrap-background-overlay"></div>
-                                                <div
-                                                    class="column mcb-column mcb-item-3mfjh8bxn one laptop-one tablet-one mobile-one column_column animate fadeInRight">
-                                                    <div
-                                                        class="mcb-column-inner mfn-module-wrapper mcb-column-inner-3mfjh8bxn mcb-item-column-inner">
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section
-                                class="section mcb-section mfn-default-section mcb-section-itksubjfj default-width">
-                                <div class="mcb-background-overlay"></div>
-                                <div
-                                    class="section_wrapper mfn-wrapper-for-wraps mcb-section-inner mcb-section-inner-itksubjfj">
-                                    <div class="wrap mcb-wrap mcb-wrap-edxseg5q one-second tablet-one-second laptop-one-second mobile-one clearfix"
-                                        data-desktop-col="one-second" data-laptop-col="laptop-one-second"
-                                        data-tablet-col="tablet-one-second" data-mobile-col="mobile-one">
-                                        <div
-                                            class="mcb-wrap-inner mcb-wrap-inner-edxseg5q mfn-module-wrapper mfn-wrapper-for-wraps">
-                                            <div class="mcb-wrap-background-overlay"></div>
-                                            <div
-                                                class="column mcb-column mcb-item-zyon7vkq one laptop-one tablet-one mobile-one column_column animate fadeInLeft">
-                                                <div
-                                                    class="mcb-column-inner mfn-module-wrapper mcb-column-inner-zyon7vkq mcb-item-column-inner">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="wrap mcb-wrap mcb-wrap-8awbwwmq one-second tablet-one-second laptop-one-second mobile-one clearfix"
-                                            data-desktop-col="one-second" data-laptop-col="laptop-one-second"
-                                            data-tablet-col="tablet-one-second" data-mobile-col="mobile-one">
-                                            <div
-                                                class="mcb-wrap-inner mcb-wrap-inner-8awbwwmq mfn-module-wrapper mfn-wrapper-for-wraps">
-                                                <div class="mcb-wrap-background-overlay"></div>
-                                                <div
-                                                    class="column mcb-column mcb-item-o6mo2c1u5 one laptop-one tablet-one mobile-one column_image animate fadeInRight">
-                                                    <div
-                                                        class="mcb-column-inner mfn-module-wrapper mcb-column-inner-o6mo2c1u5 mcb-item-image-inner">
-                                                        <div
-                                                            class="image_frame image_item no_link scale-with-grid alignnone no_border">
-                                                            <div class="image_wrapper">
-                                                                <img width="959" height="630"
-                                                                    src="https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin.jpg"
-                                                                    class="scale-with-grid"
-                                                                    alt="taman labirin pelaihari" decoding="async"
-                                                                    fetchpriority="high"
-                                                                    srcset="https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin.jpg 959w, https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin-500x328.jpg 500w, https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin-300x197.jpg 300w, https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin-768x505.jpg 768w, https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin-114x75.jpg 114w, https://dispar.kalselprov.go.id/wp-content/uploads/2023/10/taman-labirin-480x315.jpg 480w"
-                                                                    sizes="(max-width:767px) 480px, (max-width:959px) 100vw, 959px">
-                                                            </div>
-                                                            <p class="wp-caption-text">sumber foto dari
-                                                                www.direktoripariwisata.id</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section> --}}
                         </div>
 
 
-                        <section class="section mcb-section the_content no_content">
-                            <div class="section_wrapper">
-                                <div class="the_content_wrapper "></div>
-                            </div>
-                        </section>
-
-                        <section class="section section-page-footer">
-                            <div class="section_wrapper clearfix">
-                                <div class="column one page-pager">
-                                    <div class="mcb-column-inner"></div>
+                        {{-- <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
+                            <div class="max-w-2xl mx-auto px-4">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion
+                                        (20)</h2>
                                 </div>
+                                <form class="mb-6">
+                                    <div
+                                        class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                        <label for="comment" class="sr-only">Your comment</label>
+                                        <textarea id="comment" rows="6"
+                                            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                            placeholder="Write a comment..." required></textarea>
+                                    </div>
+                                    <button type="submit"
+                                        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                        Post comment
+                                    </button>
+                                </form>
+                                <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                                    <footer class="flex justify-between items-center mb-2">
+                                        <div class="flex items-center">
+                                            <p
+                                                class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                                                <img class="mr-2 w-6 h-6 rounded-full"
+                                                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                                    alt="Michael Gough">Michael Gough</p>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate
+                                                    datetime="2022-02-08" title="February 8th, 2022">Feb. 8, 2022</time>
+                                            </p>
+                                        </div>
+                                        <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                            type="button">
+                                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 16 3">
+                                                <path
+                                                    d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                            </svg>
+                                            <span class="sr-only">Comment settings</span>
+                                        </button>
+                                        <!-- Dropdown menu -->
+                                        <div id="dropdownComment1"
+                                            class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="dropdownMenuIconHorizontalButton">
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </footer>
+                                    <p class="text-gray-500 dark:text-gray-400">Very straight-to-point article. Really
+                                        worth time reading. Thank you! But tools are just the
+                                        instruments for the UX designers. The knowledge of the design tools are as
+                                        important as the
+                                        creation of the design strategy.</p>
+                                    <div class="flex items-center mt-4 space-x-4">
+                                        <button type="button"
+                                            class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium">
+                                            <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z" />
+                                            </svg>
+                                            Reply
+                                        </button>
+                                    </div>
+                                </article>
                             </div>
-                        </section>
+                        </section> --}}
 
                     </div>
 
@@ -171,7 +149,108 @@
             </div>
         </div>
 
+        {{-- <div class="container mx-auto text-center py-5 px-48 bg-slate-200">
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="POST" enctype="multipart/form-data" action="" class="space-y-4">
+                        @csrf
+                        <div class="form-group">
+                            <textarea placeholder="   Comment Here !" class="form-control comment-box w-full rounded" rows="4" required minlength="10" maxlength="1020" name="text"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-medium rounded bg-pink-600 text-white hover:bg-pink-700 py-2 px-4">
+                            Post Comment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>         --}}
+
+        {{-- <!-- Login Prompt -->
+        <div id="loginPrompt" class="container mx-auto text-center text-lg mt-5 sign-up hidden">
+            <div class="row">
+                <div class="col-md-11 mx-auto bg-white shadow-md rounded">
+                    <div class="relative overflow-hidden w-full text-center py-4">
+                        <span class="text-lg font-semibold uppercase">
+                            Please login to perform this action
+                        </span>
+                    </div>
+                    <div class="flex justify-center space-x-4 py-5">
+                        <div>
+                            <a href="https://foodieadvice.com/login/google"
+                                class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                Google
+                                <i class="fab fa-google ml-2"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://foodieadvice.com/login/facebook"
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                Facebook
+                                <i class="fab fa-facebook-f ml-2"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://foodieadvice.com/login/twitter"
+                                class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                Twitter
+                                <i class="fab fa-twitter ml-2"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://foodieadvice.com/register"
+                                class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                Email
+                                <i class="fa fa-envelope ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
+        <!-- Comment Section -->
+        <div class="container mx-auto text-center py-5 px-48 bg-slate-200">
+            <div class="row">
+                <div class="col-md-12">
+                    @auth
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('submit-comment') }}"
+                            class="space-y-4">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="wisata_id" value="{{ $wisatas->id }}">
+                            <div class="form-group">
+                                <textarea placeholder="Comment Here!" class="form-control comment-box w-full rounded" rows="4" required
+                                    minlength="10" maxlength="1020" name="konten" id="konten"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-medium rounded bg-pink-600 text-white hover:bg-pink-700 py-2 px-4">
+                                Post Comment
+                            </button>
+                        </form>
+                    @else
+                        <div class="form-group">
+                            <textarea placeholder="Please login to comment" class="form-control comment-box w-full rounded bg-gray-200"
+                                rows="4" disabled></textarea>
+                        </div>
+                        <a href="##"
+                            class="btn btn-medium rounded bg-pink-600 text-white hover:bg-pink-700 py-2 px-4"
+                            onclick="showLoginPrompt()">
+                            Login to Comment
+                        </a>
+                    @endauth
+                </div>
+            </div>
+        </div>
+
     </main>
+
+    {{-- <script>
+        function showLoginPrompt() {
+            document.getElementById('loginPrompt').classList.remove('hidden');
+            document.getElementById('loginPrompt').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script> --}}
 </body>
 <x-footer></x-footer>
 

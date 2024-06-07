@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Wisata</title>
+    <title>Kmentar</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
 </head>
@@ -14,37 +14,22 @@
     <x-leftsidebar></x-leftsidebar>
     <div class="relative px-16 py-16 sm:px-8 lg:px-72 lg:py-16">
         <div class="bg-white border-b border-gray-200 px-6 py-3">
-            <h6 class="font-bold text-blue-600">Data Wisata</h6>
+            <h6 class="font-bold text-blue-600">Komentar</h6>
         </div>
         <div class="bg-white p-6">
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Foto</th>
+                            <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">User</th>
                             <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Nama Wisata</th>
-                            <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Deskripsi</th>
-                            <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Alamat</th>
+                            <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Konten</th>
                             <th class="border-b border-gray-200 px-4 py-2 text-left text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($wisatas as $item)
                             <tr>
-                                {{-- @foreach ($item->FotoWisata as $foto)
-                                <td class="border-b border-gray-200 px-4 py-2">
-                                    <img src="{{ Storage::url($foto->path) }}" alt="Foto {{ $item->nama_wisata }}">
-                                </td>
-                                @endforeach --}}
-                                <td class="border-b border-gray-200 px-4 py-2">
-                                    @foreach ($item->fotoWisata as $foto)
-                                        <img src="{{ Storage::url($foto->path) }}" alt="{{ $item->nama_wisata }}"
-                                            class="w-72 h-36">
-                                        <script>
-                                            console.log("URL Gambar:", "{{ Storage::url($foto->path) }}");
-                                        </script>
-                                    @endforeach
-                                </td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->nama_wisata }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->deskripsi }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->alamat }}</td>
@@ -92,27 +77,6 @@
                 });
             @endif
         });
-
-        //     document.getElementById('deleteForm').addEventListener('submit', function(event) {
-        //     event.preventDefault(); // Prevent the form from submitting normally
-
-        //     if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-        //         fetch(this.action, {
-        //             method: 'DELETE',
-        //             headers: {
-        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        //             }
-        //         }).then(response => {
-        //             if (response.ok) {
-        //                 // Refresh halaman jika berhasil
-        //                 location.reload();
-        //             } else {
-        //                 // Tampilkan pesan kesalahan jika gagal
-        //                 alert('Gagal menghapus data.');
-        //             }
-        //         });
-        //     }
-        // });
     </script>
 </body>
 

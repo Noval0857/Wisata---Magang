@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wisata extends Model
 {
     protected $table = 'wisatas';
-    protected $primaryKey = 'id_wisata'; // Specify the primary key
+    protected $primaryKey = 'id'; // Specify the primary key
     public $timestamps = false; // If your table has timestamps, ensure this is true
 
     protected $fillable = [
@@ -18,6 +18,6 @@ class Wisata extends Model
 
     public function fotoWisata()
     {
-        return $this->hasMany(FotoWisata::class, 'id_wisata');
+        return $this->hasMany(FotoWisata::class);
     }
 }

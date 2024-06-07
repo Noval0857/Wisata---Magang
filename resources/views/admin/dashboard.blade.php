@@ -28,14 +28,17 @@
                             <div class="p-6">
                                 <h4 class="text-xl font-bold mb-2">{{ $wisata->nama_wisata }}</h4>
                                 <p class="text-gray-700 mb-4">{{ $wisata->deskripsi }}</p>
-                                <a href="{{ route('ubah-data-wisata', $wisata->id_wisata) }}"
+                                <a href="{{ route('ubah-data-wisata', $wisata->id) }}"
                                     class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
                                 <a href="#" class="inline-block bg-red-500 text-white px-4 py-2 rounded"
                                     onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $wisata->id_wisata }}').submit(); }">Hapus</a>
-                                <form id="delete-form-{{ $wisata->id_wisata }}"
-                                    action="{{ route('hapus-data-wisata', $wisata->id_wisata) }}"
+                                <form id="delete-form-{{ $wisata->id }}"
+                                    action="{{ route('hapus-data-wisata', $wisata->id) }}"
                                     style="display: none;">
                                     @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
                                 </form>
                             </div>
                         </div>
@@ -57,7 +60,7 @@
                     title: 'Berhasil!',
                     text: '{{ session('success') }}',
                     icon: 'success',
-                    confirmButtonText: 'OK'
+                    
                 });
             @elseif (session('warning'))
                 Swal.fire({

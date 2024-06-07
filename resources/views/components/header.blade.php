@@ -63,6 +63,22 @@
                             <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded hover:bg-sky-500"
                                 href="{{ route('logout') }}">Log Out</a>
                         </li>
+                        {{-- <li class="relative md:ml-6 mt-3 md:mt-0">
+                            <img src="/path/to/profile-picture.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full border border-gray-300 shadow-sm cursor-pointer" id="profile-icon">
+                            <!-- Dropdown Menu -->
+                            <div id="profile-dropdown" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden">
+                                <div class="py-2">
+                                    <a href="/user/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">My Profile</a>
+                                </div>
+                                <div class="py-2 border-t border-gray-200">
+                                    <form id="logout-form" action="/logout" method="POST" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                        @csrf
+                                        <button type="submit" class="w-full text-left">Log Out</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li> --}}
+                        
                     @else
                         <li class="md:ml-6 mt-3 md:mt-0">
                             <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded hover:bg-sky-500"
@@ -83,3 +99,22 @@
         menu.classList.toggle('block');
     });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileIcon = document.getElementById('profile-icon');
+        const profileDropdown = document.getElementById('profile-dropdown');
+    
+        // Toggle dropdown menu
+        profileIcon.addEventListener('click', function () {
+            profileDropdown.classList.toggle('hidden');
+        });
+    
+        // Close dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!profileIcon.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+    });
+    </script>
+    

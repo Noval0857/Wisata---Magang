@@ -47,7 +47,11 @@ class User extends Authenticatable
     }
 
     public function isAdmin()
-{
-    return $this->level === 'admin';
-}
+    {
+        return $this->level === 'admin';
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }
