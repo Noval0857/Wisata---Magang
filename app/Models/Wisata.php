@@ -20,4 +20,9 @@ class Wisata extends Model
     {
         return $this->hasMany(FotoWisata::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

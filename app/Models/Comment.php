@@ -13,7 +13,9 @@ class Comment extends Model
         'user_id',
         'wisata_id',
         'konten',
+        'approved',
     ];
+    
 
     public function user()
     {

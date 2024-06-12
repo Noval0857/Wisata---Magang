@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kmentar</title>
+    <title>Komentar</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
 </head>
@@ -28,23 +28,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($wisatas as $item)
+                        @foreach ($comments as $item)
                             <tr>
-                                <td class="border-b border-gray-200 px-4 py-2">{{ $item->nama_wisata }}</td>
-                                <td class="border-b border-gray-200 px-4 py-2">{{ $item->deskripsi }}</td>
-                                <td class="border-b border-gray-200 px-4 py-2">{{ $item->alamat }}</td>
+                                <td class="border-b border-gray-200 px-4 py-2">{{ $item->user->id }}</td>
+                                <td class="border-b border-gray-200 px-4 py-2">{{ $item->wisata->nama_wisata }}</td>
+                                <td class="border-b border-gray-200 px-4 py-2">{{ $item->konten }}</td>
                                 <td class="border-b border-gray-200 px-4 py-2">
                                     <a href="{{ route('ubah-data-wisata', $item->id) }}"
                                         class="text-blue-500 hover:text-blue-700">
                                         Edit
                                     </a>
                                     |
-                                    <form action="{{ route('hapus-data-wisata', $item->id) }}" method="POST"
+                                    @if (!$item->approved)
+                                        <form action="{{ route('komentar.approve', $item->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                class="text-green-500 hover:text-green-700">Approve</button>
+                                        </form>
+                                    @endif
+                                    |
+                                    <form action="{{ route('hapus-komentar', $item->id) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 hover:text-red-700"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini?')">Hapus</button>
                                     </form>
                                 </td>
                             </tr>

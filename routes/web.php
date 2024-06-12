@@ -12,6 +12,10 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+Route::get('/adminindex', function () {
+    return view('admin.adminindex');
+})->name('adminindex');
+
 Route::get('/', [WisataController::class, 'home'])->name('home');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -29,7 +33,7 @@ Route::get('/data_kuliner', [KulinerController::class, 'index'])->name('data_kul
 Route::get('/detail-wisata/{nama_wisata}', [WisataController::class, 'detail'])->name('detail-wisata');
 
 // Protected routes (requires authentication)
-Route::group(['middleware' => ['admin']], function() {
+Route::group(['middleware' => ['admin']], function () {
 
     Route::get('/admin', [WisataController::class, 'show'])->name('admin');
 
@@ -43,9 +47,16 @@ Route::group(['middleware' => ['admin']], function() {
 
     Route::post('/simpan-data-wisata/{id}', [WisataController::class, 'updatedata'])->name('simpan-data-wisata');
 
-    Route::delete('/hapus-data-wisata/{id}', [WisataController::class, 'hapusdata'])->name('hapus-data-wisata'); 
+    Route::delete('/hapus-data-wisata/{id}', [WisataController::class, 'hapusdata'])->name('hapus-data-wisata');
+
+    Route::get('/komentar', [CommentController::class, 'index'])->name('komentar');
+
+    Route::post('/komentar/approve/{id}', [CommentController::class, 'approveComment'])->name('komentar.approve');
 });
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function () {
     Route::post('/submit-comment', [CommentController::class, 'submitComment'])->name('submit-comment');
+
+    Route::delete('/hapus-komentar/{id}', [CommentController::class, 'destroy'])->name('hapus-komentar');
+        
 });

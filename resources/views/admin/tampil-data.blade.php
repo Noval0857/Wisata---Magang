@@ -31,18 +31,10 @@
                     <tbody>
                         @foreach ($wisatas as $item)
                             <tr>
-                                {{-- @foreach ($item->FotoWisata as $foto)
-                                <td class="border-b border-gray-200 px-4 py-2">
-                                    <img src="{{ Storage::url($foto->path) }}" alt="Foto {{ $item->nama_wisata }}">
-                                </td>
-                                @endforeach --}}
                                 <td class="border-b border-gray-200 px-4 py-2">
                                     @foreach ($item->fotoWisata as $foto)
                                         <img src="{{ Storage::url($foto->path) }}" alt="{{ $item->nama_wisata }}"
                                             class="w-72 h-36">
-                                        <script>
-                                            console.log("URL Gambar:", "{{ Storage::url($foto->path) }}");
-                                        </script>
                                     @endforeach
                                 </td>
                                 <td class="border-b border-gray-200 px-4 py-2">{{ $item->nama_wisata }}</td>

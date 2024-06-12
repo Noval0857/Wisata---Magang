@@ -43,8 +43,12 @@ class WisataController extends Controller
     public function detail($nama_wisata)
     {
         $wisatas = Wisata::where('nama_wisata', str_replace('-', ' ', $nama_wisata))->firstOrFail();
-        return view('wisata.wisata-detail', compact('wisatas'));
+        // $wisatas = Wisata::findOrFail($id);
+        $comments = $wisatas->comments()->where('approved', true)->with('user')->get();
+        return view('wisata.wisata-detail', compact('wisatas', 'comments'));
+        
     }
+
 
     // public function detail(){
     //     $wisatas = Wisata::all();
@@ -74,7 +78,7 @@ class WisataController extends Controller
             $foto = $request->file('foto');
             $path = $foto->store('public/fotos');
 
-            
+
             FotoWisata::create([
                 'wisata_id' => $wisata->id,
                 'nama_foto_wisata' => $foto->hashName(),
