@@ -5,56 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wisata Kota Banjarmasin</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="../path/to/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 
 </head>
 
 <body>
 
-    <main class="w-full">
-        <x-header></x-header>
+    <main class="">
+        {{-- <x-header></x-header> --}}
+        <x-nav-bar></x-nav-bar>
+        {{-- <x-nav-bar></x-nav-bar> --}}
+
         <x-component1></x-component1>
         <!-- start about -->
-        <section class="relative px-4 py-16 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 lg:py-32">
-            <div class="flex flex-wrap mx-auto px-4">
+        <section class="py-6 px-4 lg:px-36 xl:px-40">
+            <div class="flex flex-wrap lg:px-4 lg:py-4 sm:px-2">
                 <div class="w-full">
-                    <h2 class="text-5xl leading-tight font-bold mt-4">Kota Banjarmasin</h2>
-                    {{-- <p class="text-lg mt-4 font-semibold">Excellence in Dentistry in the Heart of NY</p> --}}
-                    <p class="text-2xl mt-2 leading-relaxed">Kota Banjarmasin, yang dikenal sebagai "Kota Seribu Sungai,"
-                        merupakan
-                        ibu kota provinsi Kalimantan Selatan. Terletak di delta sungai Barito dan Martapura, kota ini
+                    <h2 class="leading-tight font-bold sm:text-2xl md:text-4xl lg:text-4xl">Kota
+                        Banjarmasin</h2>
+                    <p class="mt-2 sm:text-sm md:text-2xl lg:text-2xl leading-relaxed text-justify">Kota
+                        Banjarmasin, yang dikenal sebagai "Kota Seribu Sungai,"
+                        merupakan ibu kota provinsi Kalimantan Selatan. Terletak di delta sungai Barito dan Martapura,
+                        kota ini
                         memiliki keunikan tersendiri dengan keberadaan sungai-sungai yang mengalir di seluruh penjuru
                         kota,
                         menciptakan pemandangan yang memikat dan memberikan pengalaman wisata yang berbeda dari
                         kota-kota
                         lain di Indonesia. Banjarmasin tidak hanya menawarkan keindahan alam, tetapi juga kekayaan
-                        budaya,
-                        sejarah, dan kuliner yang menarik untuk dijelajahi.</p>
+                        budaya, sejarah, dan kuliner yang menarik untuk dijelajahi.</p>
                 </div>
             </div>
-            <div class="container mx-auto flex flex-wrap justify-center">
+            <div class="container grid grid-cols-1 md:grid-cols-3 gap-4 justify-center lg:px-4 sm:px-2 mt-4">
                 @foreach ($wisatas as $wisata)
                     <!-- Wisata Item -->
-                    <div class="w-full md:w-1/3 p-4 animate-fadeIn">
-                        <div class="bg-white rounded-lg border border-gray-300 overflow-hidden shadow-md p-2">
-                            {{-- <img src="{{ asset('images/image.png') }}" class="w-full h-auto"> --}}
-                            @foreach ($wisata->fotoWisata as $foto)
-                                <img src="{{ Storage::url($foto->path) }}" alt="{{ $wisata->nama_wisata }}"
-                                    class="w-full h-auto">
-                            @endforeach
-                            <div class="p-6">
-                                <h4 class="text-xl font-bold mb-2">{{ $wisata->nama_wisata }}</h4>
-                                <p class="text-gray-700 mb-4">{{ $wisata->deskripsi }}</p>
-                                <a href="{{ route('detail-wisata', str_replace(' ', '-', $wisata->nama_wisata)) }}"
-                                    class="inline-block bg-blue-500 text-white px-4 py-2 rounded">Explore</a>
+                    <div class="animate-fadeIn">
+                        <a href="{{ route('detail-wisata', str_replace(' ', '-', $wisata->nama_wisata)) }}"
+                            class="block">
+                            <div class="rounded-lg overflow-hidden shadow-md relative">
+                                @php
+                                    $firstFoto = $wisata->fotoWisata->first();
+                                @endphp
+                                @if ($firstFoto)
+                                    <img src="{{ asset($firstFoto->path) }}" alt="{{ $wisata->nama_wisata }}"
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <img src="{{ asset('path/to/default/image.jpg') }}" alt="Default Image"
+                                        class="w-full h-full object-cover">
+                                @endif
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-80 transition duration-300">
+                                    <span
+                                        class="px-2 py-1 rounded text-center uppercase text-white font-bold">{{ $wisata->nama_wisata }}</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
-
             </div>
+
+
 
 
             <script>
@@ -79,6 +92,8 @@
                 });
             </script>
         </section>
+
+
     </main>
 </body>
 <x-footer></x-footer>

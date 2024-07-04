@@ -17,7 +17,7 @@ class CekLevel
     public function handle(Request $request, Closure $next): Response
     {
         // Check if user is authenticated and has the 'admin' level
-        if (Auth::check() && Auth::user()->level == 'admin') {
+        if (Auth::check() && Auth::user()->role == 'admin') {
             return $next($request);
         }
 

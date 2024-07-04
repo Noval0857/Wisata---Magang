@@ -7,61 +7,126 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $wisatas->nama_wisata }} - Dispar</title>
     @vite('resources/css/app.css')
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </head>
 
 <body>
     <main class="w-full">
-        <x-header></x-header>
-        <div class="">
-            <section
-                class="cover bg-blue-teal-gradient relative px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex
-            items-center min-h-screen">
-                <div class="h-full absolute top-0 left-0 z-0">
-                    <img src="{{ asset('images/Banner_Bjm.jpg') }}" alt="" class="w-full h-full object-cover">
+        <x-nav-bar></x-nav-bar>
+        {{-- <div class="w-full">
+            <section class="relative overflow-hidden min-h-screen bg-cover">
+                <div class="h-full absolute w-full">
+                    @foreach ($wisatas->fotoWisata as $foto)
+                        <img src="{{ asset($foto->path) }}" alt="{{ $wisatas->nama_wisata }}"
+                            class="w-full h-full object-cover">
+                    @endforeach
                 </div>
+                <div class="px-4 lg:px-36 xl:px-40">
+                    <div class="text-center">
+                        <h1 class="text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">Discover new horizons and create unforgettable memories through travel.</h1>
+                        <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4"></p>
+                    </div>
+                </div>
+            </section>
+        </div> --}}
 
+        <div class="w-full">
+            <section class="relative overflow-hidden min-h-screen bg-cover">
+                @php
+                    $firstFoto = $wisatas->fotoWisata->first();
+                @endphp
+                <div class="h-full w-full absolute inset-0">
+                    @if ($firstFoto)
+                        <img src="{{ asset($firstFoto->path) }}" alt="{{ $wisatas->nama_wisata }}"
+                            class="w-full h-full object-cover transition-opacity duration-300 hover:opacity-50">
+                    @else
+                        <img src="{{ asset('path/to/default/image.jpg') }}" alt="Default Image"
+                            class="w-full h-full object-cover transition-opacity duration-300 hover:opacity-50">
+                    @endif
+                </div>
+                
+                <div class="px-4 lg:px-36 xl:px-40 relative z-20 flex items-center justify-center min-h-screen bg-black bg-opacity-0 hover:bg-black hover:bg-opacity-80 transition duration-300">
+                    <div class="">
+                        <h1 class="text-white text-center text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">{{ $wisatas->nama_wisata }}</h1>
+                    </div>
+                </div>
             </section>
         </div>
+        
 
-        {{-- detail-wisata --}}
-        <div class="relative px-4 py-16 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 lg:py-32">
-            <div class="content_wrapper clearfix">
 
-                <main class="sections_group">
-
-                    <div class="entry-content" itemprop="mainContentOfPage">
-                        <div class="mfn-builder-content mfn-default-content-buider">
-                            <section class="section mcb-section mfn-default-section mcb-section-kipi6b65 default-width">
-                                @foreach ($wisatas->fotoWisata as $foto)
-                                    <img src="{{ Storage::url($foto->path) }}" alt="{{ $wisatas->nama_wisata }}"
-                                        class="w-full">
-                                @endforeach
-                                <div class="column_attr mfn-inline-editor clearfix">
-                                    <h1 class="font-bold">{{ $wisatas->nama_wisata }}</h1>
-                                    <p class="text-justify">{{ $wisatas->deskripsi }}</p>
-                                </div>
-                                <div class="mb-4">
-                                    <iframe width="100%" height="400" frameborder="0" scrolling="no"
-                                        marginheight="0" marginwidth="0" src="{{ $wisatas->google_maps_url }}">
-                                    </iframe>
-                                </div>
-                                <div class="text-center">map lokasi</div>
-                                <div class="column_attr mfn-inline-editor clearfix">
-                                    <p class="text-justify">{{ $wisatas->deskripsi }}</p>
-                                    <p><strong>Alamat :</strong> <em>{{ $wisatas->alamat }}</em></p>
-                                </div>
-                                <div class="column_attr mfn-inline-editor clearfix">
-                                    <p class="text-justify">{{ $wisatas->deskripsi }}</p>
-                                </div>
-                            </section>
+        <div class="py-6 px-4 lg:px-36 xl:px-40">
+            <main class="">
+                <section class="">
+                    <div class="">
+                        <h1 class="leading-tight font-bold sm:text-2xl md:text-4xl lg:text-4xl mb-2">
+                            {{ $wisatas->nama_wisata }}</h1>
+                        <div class="leading-tight text-justify sm:text-2xl md:text-4xl lg:text-xl">
+                            <p>{{ $wisatas->deskripsi_1 }}</p>
                         </div>
+                        <br>
+                        <div class="leading-tight text-justify sm:text-2xl md:text-4xl lg:text-xl">
+                            <p>{{ $wisatas->deskripsi_2 }}</p>
+                        </div>
+                        <br>
                     </div>
-                </main>
-            </div>
+
+                    <div id="gallery"
+                        class="relative w-full h-[200px] sm:h-[355px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[550px] mx-auto border rounded-lg"
+                        data-carousel="slide">
+                        <!-- Carousel wrapper -->
+                        <div class="relative h-full overflow-hidden rounded-lg">
+                            @foreach ($wisatas->fotoWisata as $index => $foto)
+                                <div class="hidden duration-700 ease-in-out {{ $index === 0 ? 'block' : '' }}"
+                                    data-carousel-item>
+                                    <img src="{{ asset($foto->path) }}"
+                                        class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                        alt="{{ $wisatas->nama_wisata }}">
+                                </div>
+                            @endforeach
+                        </div>
+                        <!-- Slider controls -->
+                        <button type="button"
+                            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                            data-carousel-prev>
+                            <span
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                <svg class="w-4 h-4 text-blcak dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                                <span class="sr-only">Previous</span>
+                            </span>
+                        </button>
+                        <button type="button"
+                            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                            data-carousel-next>
+                            <span
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                <svg class="w-4 h-4 text-black dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                                <span class="sr-only">Next</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="mb-4 mt-7 rounded-lg overflow-hidden">
+                        <iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0" src="{{ $wisatas->google_maps_url }}">
+                        </iframe>
+                    </div>
+                    <div class="text-center">Map Lokasi</div>
+                    <br>
+                </section>
+            </main>
         </div>
 
         <!-- Input Comment Section -->
-        <div class="container mx-auto text-center bg-slate-200 relative px-4 py-5 sm:px-8 lg:px-16 xl:px-40 2xl:px-64">
+        <div class="container mx-auto text-center bg-slate-200 relative py-6 px-4 lg:px-36 xl:px-40">
             <div class="row">
                 <div class="col-md-12">
                     @auth
@@ -69,10 +134,6 @@
                             class="space-y-4">
                             {{ csrf_field() }}
                             <input type="hidden" name="wisata_id" value="{{ $wisatas->id }}">
-                            {{-- <div class="form-group">
-                                <textarea placeholder="Comment Here!" class="form-control comment-box w-full rounded" rows="4" required
-                                    minlength="10" maxlength="1020" name="konten" id="konten"></textarea>
-                            </div> --}}
                             <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border">
                                 <label for="comment" class="sr-only">Your comment</label>
                                 <textarea id="konten" rows="6" name="konten" minlength="2" maxlength="1020"
@@ -89,6 +150,7 @@
                             <textarea placeholder="Please login to comment" class="form-control comment-box w-full rounded bg-gray-200"
                                 rows="4" disabled></textarea>
                         </div>
+                        <br>
                         <a href="{{ route('login') }}"
                             class="btn btn-medium rounded bg-pink-600 text-white hover:bg-pink-700 py-2 px-4"
                             onclick="showLoginPrompt()">
@@ -99,8 +161,8 @@
             </div>
         </div>
 
-        <section class="relative px-4 py-16 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 lg:py-32 dark:bg-gray-900">
-            <div class="max-w-2xl mx-auto lg:max-w-none">
+        <section class="relative py-6 px-4 lg:px-36 xl:px-40 dark:bg-gray-900">
+            <div class="">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Komentar</h2>
                 </div>
@@ -114,8 +176,9 @@
                                     <p
                                         class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                                         <img class="mr-2 w-6 h-6 rounded-full"
-                                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                                            alt="Michael Gough">{{ $comment->user->name }}
+                                            src="{{ $comment->user->profile->foto_profil ? asset('uploads/' . $comment->user->profile->foto_profil) : asset('images/profil-blank.webp') }}"
+                                            alt="Profile Picture">
+                                        {{ $comment->user->name }}
                                     </p>
                                     <p class="text-sm text-gray-600 dark:text-gray-400">
                                         <time pubdate datetime="{{ $comment->created_at->toDateString() }}"
@@ -124,18 +187,19 @@
                                         </time>
                                     </p>
                                 </div>
-                                <button id="dropdownCommentButton_{{ $comment->id }}"
+                                {{-- <button id="dropdownCommentButton_{{ $comment->id }}"
                                     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                                     type="button">
-                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    <svg class="w-5 h-5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 16 3">
                                         <path
                                             d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                                     </svg>
                                     <span class="sr-only">Comment settings</span>
-                                </button>
+                                </button> --}}
 
-                                <div id="dropdownComment_{{ $comment->id }}"
+                                {{-- <div id="dropdownComment_{{ $comment->id }}"
                                     class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownMenuIconHorizontalButton">
@@ -152,9 +216,7 @@
                                                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
                                         </li>
                                     </ul>
-                                </div>
-
-
+                                </div> --}}
                             </footer>
                             <p class="text-gray-500 dark:text-gray-400">{{ $comment->konten }}</p>
                             <div class="flex items-center mt-4 space-x-4">
@@ -174,44 +236,40 @@
                 @endif
             </div>
         </section>
-
     </main>
 
     <script>
-        // document.addEventListener('DOMContentLoaded', (event) => {
-        //     const button = document.getElementById('dropdownCommentButton');
-        //     const dropdown = document.getElementById('dropdownComment');
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+            });
 
-        //     button.addEventListener('click', () => {
-        //         if (dropdown.classList.contains('hidden')) {
-        //             dropdown.classList.remove('hidden');
-        //         } else {
-        //             dropdown.classList.add('hidden');
-        //         }
-        //     });
+            const commentElements = document.querySelectorAll('.comment');
 
-        //     // Optional: Close the dropdown when clicking outside
-        //     document.addEventListener('click', (event) => {
-        //         if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-        //             dropdown.classList.add('hidden');
-        //         }
-        //     });
-        // });
+            commentElements.forEach(commentElement => {
+                const commentId = commentElement.dataset.commentId;
+                const dropdownCommentButton = document.getElementById(`dropdownCommentButton_${commentId}`);
+                const dropdownComment = document.getElementById(`dropdownComment_${commentId}`);
 
-        const commentElements = document.querySelectorAll('.comment');
-
-        commentElements.forEach(commentElement => {
-            const commentId = commentElement.dataset.commentId;
-            const dropdownCommentButton = document.getElementById(`dropdownCommentButton_${commentId}`);
-            const dropdownComment = document.getElementById(`dropdownComment_${commentId}`);
-
-            dropdownCommentButton.addEventListener('click', () => {
-                dropdownComment.classList.toggle('hidden');
+                dropdownCommentButton.addEventListener('click', () => {
+                    dropdownComment.classList.toggle('hidden');
+                });
             });
         });
     </script>
-
+    <x-footer></x-footer>
 </body>
-<x-footer></x-footer>
 
 </html>

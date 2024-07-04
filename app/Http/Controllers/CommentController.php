@@ -13,7 +13,7 @@ class CommentController extends Controller
     {
         // Mengambil semua komentar beserta user dan wisata yang terkait
         $comments = Comment::with(['user', 'wisata'])->get();
-        return view('admin.komentar', compact('comments'));
+        return view('admin.data-komentar.komentar-user', compact('comments'));
     }
 
     public function submitComment(Request $request)

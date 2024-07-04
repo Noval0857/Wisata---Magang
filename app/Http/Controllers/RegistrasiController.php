@@ -13,7 +13,7 @@ class RegistrasiController extends Controller
     public function simpanregistrasi(Request $request) {
 
         User::create([
-            'level' => 'umum',
+            'role' => 'umum',
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'remember_token' => Str::random(60),

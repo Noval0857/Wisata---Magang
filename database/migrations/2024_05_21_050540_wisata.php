@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('wisatas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('nama_wisata');
-            $table->text('deskripsi')->nullable();
+            $table->text('deskripsi_1')->nullable();
+            $table->text('deskripsi_2')->nullable();
             $table->text('alamat')->nullable();
             $table->string('google_maps_url')->nullable();
         });
