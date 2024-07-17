@@ -14,23 +14,6 @@
 <body>
     <main class="w-full">
         <x-nav-bar></x-nav-bar>
-        {{-- <div class="w-full">
-            <section class="relative overflow-hidden min-h-screen bg-cover">
-                <div class="h-full absolute w-full">
-                    @foreach ($wisatas->fotoWisata as $foto)
-                        <img src="{{ asset($foto->path) }}" alt="{{ $wisatas->nama_wisata }}"
-                            class="w-full h-full object-cover">
-                    @endforeach
-                </div>
-                <div class="px-4 lg:px-36 xl:px-40">
-                    <div class="text-center">
-                        <h1 class="text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">Discover new horizons and create unforgettable memories through travel.</h1>
-                        <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4"></p>
-                    </div>
-                </div>
-            </section>
-        </div> --}}
-
         <div class="w-full">
             <section class="relative overflow-hidden min-h-screen bg-cover">
                 @php
@@ -63,14 +46,10 @@
                         <h1 class="leading-tight font-bold sm:text-2xl md:text-4xl lg:text-4xl mb-2">
                             {{ $wisatas->nama_wisata }}</h1>
                         <div class="leading-tight text-justify sm:text-2xl md:text-4xl lg:text-xl">
-                            <p>{{ $wisatas->deskripsi_1 }}</p>
+                            <p>{!! $wisatas->deskripsi !!}</p>
                         </div>
-                        <br>
-                        <div class="leading-tight text-justify sm:text-2xl md:text-4xl lg:text-xl">
-                            <p>{{ $wisatas->deskripsi_2 }}</p>
-                        </div>
-                        <br>
                     </div>
+                    <br>
 
                     <div id="gallery"
                         class="relative w-full h-[200px] sm:h-[355px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[550px] mx-auto border rounded-lg"
@@ -178,7 +157,7 @@
                                         <img class="mr-2 w-6 h-6 rounded-full"
                                             src="{{ $comment->user->profile->foto_profil ? asset('uploads/' . $comment->user->profile->foto_profil) : asset('images/profil-blank.webp') }}"
                                             alt="Profile Picture">
-                                        {{ $comment->user->name }}
+                                        {{ $comment->user->profile->nama_lengkap }}
                                     </p>
                                     <p class="text-sm text-gray-600 dark:text-gray-400">
                                         <time pubdate datetime="{{ $comment->created_at->toDateString() }}"
@@ -238,7 +217,7 @@
         </section>
     </main>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const swiper = new Swiper('.swiper-container', {
                 loop: true,
@@ -268,7 +247,7 @@
                 });
             });
         });
-    </script>
+    </script> --}}
     <x-footer></x-footer>
 </body>
 

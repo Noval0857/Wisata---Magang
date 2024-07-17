@@ -15,16 +15,17 @@ class WisataController extends Controller
 {
 
     // tampilkan data
-    public function index()
-    {
-        $wisatas = Wisata::with("fotoWisata", "category")->get();
-        return view('admin.adminindex', compact('wisatas'));
-    }
+    // public function index()
+    // {
+    //     $wisatas = Wisata::with("fotoWisata", "category")->get();
+    //     return view('admin.data-wisata.data-wisata', compact('wisatas'));
+    // }
+
 
     public function show()
     {
         $wisatas = Wisata::all();
-        return view('admin.adminindex', compact('wisatas'));
+        return view('admin.data-wisata.data-wisata', compact('wisatas'));
     }
 
     public function home()
@@ -55,8 +56,7 @@ class WisataController extends Controller
         // Validate the incoming request
         $request->validate([
             'nama_wisata' => 'required|string|max:255',
-            'deskripsi_1' => 'nullable|string',
-            'deskripsi_2' => 'nullable|string',
+            'deskripsi' => 'nullable|string',
             'alamat' => 'nullable|string',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:3048',
             'google_maps_url' => 'required|url',
@@ -66,8 +66,7 @@ class WisataController extends Controller
         // Create a new Wisata record
         $wisata = Wisata::create([
             'nama_wisata' => $request->input('nama_wisata'),
-            'deskripsi_1' => $request->input('deskripsi_1'),
-            'deskripsi_2' => $request->input('deskripsi_2'),
+            'deskripsi' => $request->input('deskripsi'),
             'alamat' => $request->input('alamat'),
             'google_maps_url' => $request->input('google_maps_url'),
             'category_id' => $request->input('category_id'),  // Menyediakan nilai category_id
@@ -108,8 +107,7 @@ class WisataController extends Controller
         // Validate the input
         $request->validate([
             'nama_wisata' => 'required|string|max:255',
-            'deskripsi_1' => 'required|string',
-            'deskripsi_2' => 'required|string',
+            'deskripsi' => 'required|string',
             'alamat' => 'required|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3048',
             'google_maps_url' => 'required|url',
@@ -119,8 +117,7 @@ class WisataController extends Controller
         // Update the record
         $wisata->update([
             'nama_wisata' => $request->input('nama_wisata'),
-            'deskripsi_1' => $request->input('deskripsi_1'),
-            'deskripsi_2' => $request->input('deskripsi_2'),
+            'deskripsi' => $request->input('deskripsi'),
             'alamat' => $request->input('alamat'),
             'google_maps_url' => $request->input('google_maps_url'),
             'category_id' => $request->input('category_id') // Update the category

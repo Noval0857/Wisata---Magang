@@ -36,16 +36,16 @@ class CommentController extends Controller
         return back()->with('success', 'Comment posted successfully.');
     }
 
-    public function destroy($id)
+    public function hapus_komentar($id)
     {
-        $comment = Comment::findOrFail($id);
+        $comments = Comment::findOrFail($id);
 
         // Hanya pengguna yang memiliki komentar atau admin yang dapat menghapus komentar
-        if (Auth::id() !== $comment->user_id) {
+        if (Auth::id() !== $comments->user_id) {
             return back()->with('warning', 'You are not authorized to delete this comment.');
         }
 
-        $comment->delete();
+        $comments->delete();
 
         return back()->with('success', 'Comment deleted successfully.');
     }
@@ -58,5 +58,40 @@ class CommentController extends Controller
         $comment->save();
 
         return back()->with('success', 'Comment approved successfully.');
+    }
+
+    // Menampilkan formulir pengeditan komentar
+    public function edit_komentar($id)
+    {
+        $comments = Comment::findOrFail($id);
+
+        // Pastikan hanya pengguna yang memiliki komentar atau admin yang dapat mengedit komentar
+        if (Auth::id() !== $comments->user_id) {
+            return back()->with('warning', 'You are not authorized to edit this comment.');
+        }
+
+        return view('admin.data-komentar.edit-komentar-user', compact('comments'));
+    }
+
+    // Menangani permintaan pembaruan komentar
+    public function update_komentar(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'konten' => 'required|string|min:2|max:1020',
+        ]);
+
+        $comments = Comment::findOrFail($id);
+
+        // Pastikan hanya pengguna yang memiliki komentar atau admin yang dapat mengedit komentar
+        if (Auth::id() !== $comments->user_id) {
+            return back()->with('warning', 'You are not authorized to update this comment.');
+        }
+
+        // Perbarui konten komentar
+        $comments->konten = $request->input('konten');
+        $comments->save();
+
+        return back()->with('success', 'Comment updated successfully.');
     }
 }

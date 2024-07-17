@@ -13,14 +13,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/images/logo.svg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords"
         content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Foto Wisata</title>
+    <title>Data Wisata</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <!-- END: CSS Assets-->
@@ -43,7 +42,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Application</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Foto Wisata</li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Wisata</li>
                     </ol>
                 </nav>
                 <!-- END: Breadcrumb -->
@@ -59,7 +58,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     Data Wisata
                                 </h2>
                                 <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-                                    <a href="{{ route('tambah-foto-wisata') }}"
+                                    <a href="{{ route('tambah-data-wisata') }}"
                                         class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300">
                                         <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Tambah
                                         Data </a>
@@ -71,64 +70,72 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <tr>
                                             <th class="whitespace-nowrap">IMAGES</th>
                                             <th class="whitespace-nowrap">NAMA WISATA</th>
+                                            <th class="whitespace-nowrap">NAMA KATEGORI</th>
+                                            <th class="text-center whitespace-nowrap">DESKRIPSI</th>
+                                            <th class="text-center whitespace-nowrap">ALAMAT</th>
+                                            <th class="text-center whitespace-nowrap">STATUS</th>
+                                            <th class="text-center whitespace-nowrap">ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($foto_wisata as $item)
-                                            @foreach ($item->fotoWisata as $index => $foto)
-                                                <tr class="intro-x">
-                                                    @if ($index !== 0)
-                                                        <tr>
-                                                            <td>
-                                                                <div>
-                                                                    <img src="{{ asset($foto->path) }}" alt="{{ $item->nama_wisata }}"
-                                                                        class="w-52">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_wisata }}</a>
-                                                            </td>
-                                                        </tr>
+                                        @forelse ($wisatas as $item)
+                                            <tr class="intro-x">
+                                                <td class="">
+                                                    <div class="flex justify-center">
+                                                        @if ($item->fotoWisata->count() > 0)
+                                                            <img src="{{ asset($item->fotoWisata->first()->path) }}"
+                                                                alt="{{ $item->nama_wisata }}" class=" ">
+                                                        @else
+                                                            <span>No Image Available</span>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href=""
+                                                        class="font-medium whitespace-nowrap">{{ $item->nama_wisata }}</a>
+                                                </td>
+                                                <td>
+                                                    @if ($item->category)
+                                                        {{ $item->category->nama_kategori }}
+                                                    @else
+                                                        No Category Assigned
                                                     @endif
-                                                </tr>
-                                            @endforeach
-                                        @endforeach
+                                                </td>
+                                        <td class="">{{ Str::limit($item->deskripsi, 100) }}</td>
+                                        <td class="text-center">{{ $item->alamat }}</td>
+                                        <td class="w-40">
+                                            <div class="flex items-center justify-center text-success"> <i
+                                                    data-lucide="check-square" class="w-4 h-4 mr-2"></i>
+                                                Active </div>
+                                        </td>
+                                        <td class="table-report__action w-56">
+                                            <div class="flex justify-center items-center">
+                                                <a class="flex items-center mr-3"
+                                                    href="{{ route('ubah-data-wisata', $item->id) }}"> <i
+                                                        data-lucide="check-square" class="w-4 h-4 mr-1"></i>
+                                                    Edit </a>
+                                                <form action="{{ route('hapus-data-wisata', $item->id) }}"
+                                                    method="POST" class="inline-block">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="flex items-center text-danger">
+                                                        <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">Tidak ada data yang
+                                                ditemukan.</td>
+                                        </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
-                                <nav class="w-full sm:w-auto sm:mr-auto">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevrons-left"></i> </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevron-left"></i> </a>
-                                        </li>
-                                        <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                                        <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                                        <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
-                                        <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                                        <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevron-right"></i> </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevrons-right"></i> </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <select class="w-20 form-select box mt-3 sm:mt-0">
-                                    <option>10</option>
-                                    <option>25</option>
-                                    <option>35</option>
-                                    <option>50</option>
-                                </select>
-                            </div> --}}
                         </div>
                         <!-- END: Weekly Top Products -->
                     </div>

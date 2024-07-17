@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="keywords"
         content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Ubah Data Kategori</title>
+    <title>Edit Data Komentar</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
@@ -51,12 +51,12 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END: Top Bar -->
             <div class="intro-y flex items-center mt-8 mb-8">
                 <h2 class="text-lg font-medium mr-auto">
-                    Edit Data Kategori
+                    Edit Komentar
                 </h2>
             </div>
             <div class="">
                 <div class="intro-y col-span-11 2xl:col-span-9">
-                    <form action="{{ route('update-kategori-wisata', ['id' => $kategoris->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('update-komentar-user', ['id' => $comments->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="intro-y box p-5">
@@ -66,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="form-label xl:w-64 xl:!mr-10">
                                             <div class="text-left">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium">Nama Kategori</div>
+                                                    <div class="font-medium">Konten</div>
                                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                                                         Required
                                                     </div>
@@ -74,7 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                         </div>
                                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                                            <input id="nama_kategori" name="nama_kategori" type="text" class="form-control" placeholder="Nama Kategori" value="{{ $kategoris->nama_kategori }}">
+                                            <input id="konten" name="konten" type="text" class="form-control" placeholder="konten" value="{{ $comments->konten }}">
                                         </div>
                                     </div>
                                 </div>
@@ -90,13 +90,6 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END: Content -->
     </div>
-    {{-- <!-- BEGIN: Dark Mode Switcher-->
-    <div data-url="side-menu-dark-add-product.html"
-        class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box dark:bg-dark-2 border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
-        <div class="mr-4 text-gray-700 dark:text-gray-300">Dark Mode</div>
-        <div class="dark-mode-switcher__toggle border"></div>
-    </div>
-    <!-- END: Dark Mode Switcher--> --}}
 
     <!-- BEGIN: JS Assets-->
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
@@ -129,36 +122,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     showConfirmButton: false
                 });
             @endif
-        });
-    </script>
-
-    <script>
-        function previewImage(event) {
-            const input = event.target;
-            const imageContainer = document.getElementById('image-container');
-            const uploadedImage = document.getElementById('uploaded-image');
-            const removeImage = document.getElementById('remove-image');
-
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImage.src = e.target.result;
-                    uploadedImage.classList.remove('hidden');
-                    removeImage.classList.remove('hidden');
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        document.getElementById('remove-image').addEventListener('click', function() {
-            const uploadedImage = document.getElementById('uploaded-image');
-            const removeImage = document.getElementById('remove-image');
-            const inputFile = document.getElementById('foto');
-
-            uploadedImage.src = '';
-            uploadedImage.classList.add('hidden');
-            removeImage.classList.add('hidden');
-            inputFile.value = '';
         });
     </script>
 </body>

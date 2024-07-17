@@ -18,7 +18,6 @@
     <main class="">
         {{-- <x-header></x-header> --}}
         <x-nav-bar></x-nav-bar>
-        {{-- <x-nav-bar></x-nav-bar> --}}
 
         <x-component1></x-component1>
         <!-- start about -->

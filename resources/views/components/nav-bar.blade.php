@@ -1,4 +1,4 @@
-<header class="bg-transparent">
+<header class="bg-white sticky top-0 z-50">
     <nav class="px-4 lg:px-36 xl:px-40">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
             <!-- Logo dan nama aplikasi -->

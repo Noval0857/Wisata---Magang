@@ -8,6 +8,12 @@ use App\Models\UserProfile;
 
 class UserController extends Controller
 {
+    public function show_data_user()
+    {
+        $users = UserProfile::all();
+        return view('admin.data-user.data-user', compact('users'));
+    }
+
     public function profile()
     {
         $user = Auth::user();
@@ -50,5 +56,6 @@ class UserController extends Controller
 
         return redirect()->route('profile-user')->with('success', 'Profile updated successfully');
     }
+
 }
 

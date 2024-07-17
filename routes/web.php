@@ -3,27 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
-use App\Http\Controllers\KulinerController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
-
-Route::get('/profile-user', function () {
-    return view('user/profile-user');
-})->name('profile-user');
-
-Route::get('/edit-user', function () {
-    return view('user/edit-user');
-})->name('edit-user');
-
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/adminindex', function () {
-    return view('admin.adminindex');
-})->name('adminindex');
 
 Route::get('/', [WisataController::class, 'home'])->name('home');
 
@@ -37,18 +21,20 @@ Route::get('/registrasi', [LoginController::class, 'registrasi'])->name('registr
 
 Route::post('/simpanregistrasi', [RegistrasiController::class, 'simpanregistrasi'])->name('simpanregistrasi');
 
-Route::get('/data_kuliner', [KulinerController::class, 'index'])->name('data_kuliner');
-
 Route::get('/detail-wisata/{nama_wisata}', [WisataController::class, 'detail'])->name('detail-wisata');
+
+Route::get('/wisata-category/{category}', [WisataController::class, 'showByCategory'])->name('wisata-category');
 
 // Protected routes (requires authentication)
 Route::group(['middleware' => ['admin']], function () {
 
-    Route::get('/admin', [WisataController::class, 'show'])->name('admin');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+    // Wisata
 
     Route::get('/tambah-data-wisata', [WisataController::class, 'viewTambah'])->name('tambah-data-wisata');
 
-    Route::get('/data-wisata', [WisataController::class, 'index'])->name('data-wisata');
+    Route::get('/data-wisata', [WisataController::class, 'show'])->name('data-wisata');
 
     Route::post('/simpan-data', [WisataController::class, 'simpandata'])->name('simpan-data');
 
@@ -58,15 +44,27 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::delete('/hapus-data-wisata/{id}', [WisataController::class, 'hapusdata'])->name('hapus-data-wisata');
 
+    // Komentar
+
     Route::get('/komentar', [CommentController::class, 'index'])->name('komentar');
 
     Route::post('/komentar/approve/{id}', [CommentController::class, 'approveComment'])->name('komentar.approve');
+
+    Route::get('/edit-komentar-user/{id}', [CommentController::class, 'edit_komentar'])->name('edit-komentar-user');
+
+    Route::post('/update-komentar-user/{id}', [CommentController::class, 'update_komentar'])->name('update-komentar-user');
+
+    Route::delete('/hapus-komentar-user/{id}', [CommentController::class, 'hapus_komentar'])->name('hapus-komentar-user');
+
+    // Foto Wisata
 
     Route::get('/foto-wisata', [WisataController::class, 'tampil_foto_wisata'])->name('foto-wisata');
 
     Route::get('/tambah-foto-wisata', [WisataController::class, 'viewTambah_foto_wisata'])->name('tambah-foto-wisata');
 
     Route::post('/simpan-foto-wisata', [WisataController::class, 'simpan_foto_wisata'])->name('simpan-foto-wisata');
+
+    // Kategori
 
     Route::get('/kategori-wisata', [WisataController::class, 'kategori_wisata'])->name('kategori-wisata');
 
@@ -80,7 +78,10 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::delete('/hapus-kategori-wisata/{id}', [WisataController::class, 'hapus_kategori_wisata'])->name('hapus-kategori-wisata');
 
-    Route::get('/wisata-category/{category}', [WisataController::class, 'showByCategory'])->name('wisata-category');
+    // User
+
+    Route::get('/data-user', [UserController::class, 'show_data_user'])->name('show-data-user');
+
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -93,4 +94,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/edit-user', [UserController::class, 'edit'])->name('edit-user');
 
     Route::post('/update-user', [UserController::class, 'update'])->name('update-user');
+    
 });

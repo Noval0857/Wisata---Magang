@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="keywords"
         content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Data Kategori</title>
+    <title>Data User</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <!-- END: CSS Assets-->
@@ -42,8 +42,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Breadcrumb -->
                 <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Application</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"></a>Application</li>
+                        <li class="breadcrumb-item active" aria-current="page">Data User</li>
                     </ol>
                 </nav>
                 <!-- END: Breadcrumb -->
@@ -56,37 +56,43 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="col-span-12 mt-6">
                             <div class="intro-y block sm:flex items-center h-10">
                                 <h2 class="text-lg font-medium truncate mr-5">
-                                    Data Kategori
+                                    Data User
                                 </h2>
-                                <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-                                    <a href="{{ route('view-tambah-kategori-wisata') }}"
-                                        class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300">
-                                        <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Tambah
-                                        Data </a>
-                                </div>
                             </div>
                             <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                                 <table class="table table-report sm:mt-2">
                                     <thead>
                                         <tr>
-                                            <th class="whitespace-nowrap">NO.</th>
-                                            <th class="whitespace-nowrap">NAMA KATEGORI</th>
+                                            <th class="text-center whitespace-nowrap">NAMA USER</th>
+                                            <th class="text-center whitespace-nowrap">ALAMAT</th>
+                                            <th class="text-center whitespace-nowrap">TELEPON</th>
+                                            <th class="text-center whitespace-nowrap">TANGGAL LAHIR</th>
+                                            <th class="text-center whitespace-nowrap">FOTO PROFIL</th>
                                             <th class="text-center whitespace-nowrap">ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($kategoris as $index => $item)
+                                        @forelse ($users as $item)
                                             <tr class="intro-x">
-                                                <td>{{ $index + 1 }}</td>
-                                                <td>{{ $item->nama_kategori }}</td>
+                                                <td class="text-center">{{ $item->nama_lengkap }}</td>
+                                                <td class="text-center">{{ $item->alamat }}</td>
+                                                <td class="text-center">{{ $item->telepon }}</td>
+                                                <td class="text-center">{{ $item->tanggal_lahir }}</td>
+                                                <td class="flex justify-center">
+                                                    @if ($item->foto_profil)
+                                                        <img src="{{ asset('uploads/' . $item->foto_profil) }}" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                                                    @else
+                                                        <img src="{{ asset('images/profil-blank.webp') }}" alt="Default Foto Profil" class="w-10 h-10 rounded-full">
+                                                    @endif
+                                                </td>
                                                 <td class="table-report__action w-56">
                                                     <div class="flex justify-center items-center">
                                                         <a class="flex items-center mr-3"
-                                                            href="{{ route('view-edit-kategori-wisata', $item->id) }}">
+                                                            href="{{ route('ubah-data-wisata', $item->id) }}">
                                                             <i data-lucide="check-square" class="w-4 h-4 mr-1"></i>
                                                             Edit
                                                         </a>
-                                                        <form action="{{ route('hapus-kategori-wisata', $item->id) }}"
+                                                        <form action="{{ route('hapus-komentar', $item->id) }}"
                                                             method="POST" class="inline-block">
                                                             @csrf
                                                             @method('DELETE')
@@ -101,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="3" class="text-center">Tidak ada data yang
+                                                <td colspan="6" class="text-center">Tidak ada komentar yang
                                                     ditemukan.</td>
                                             </tr>
                                         @endforelse
@@ -109,40 +115,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </table>
 
                             </div>
-                            {{-- <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
-                                <nav class="w-full sm:w-auto sm:mr-auto">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevrons-left"></i> </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevron-left"></i> </a>
-                                        </li>
-                                        <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                                        <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                                        <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
-                                        <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                                        <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevron-right"></i> </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"> <i class="w-4 h-4"
-                                                    data-lucide="chevrons-right"></i> </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <select class="w-20 form-select box mt-3 sm:mt-0">
-                                    <option>10</option>
-                                    <option>25</option>
-                                    <option>35</option>
-                                    <option>50</option>
-                                </select>
-                            </div> --}}
                         </div>
+
                         <!-- END: Weekly Top Products -->
                     </div>
                 </div>
