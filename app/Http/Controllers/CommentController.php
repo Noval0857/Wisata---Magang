@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -33,17 +34,12 @@ class CommentController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return back()->with('success', 'Comment posted successfully.');
+        return back()->with('success', 'Komentar berhasil ditambahkan. Tunggu persetujuan admin untuk ditampilkan!');
     }
 
     public function hapus_komentar($id)
     {
         $comments = Comment::findOrFail($id);
-
-        // Hanya pengguna yang memiliki komentar atau admin yang dapat menghapus komentar
-        if (Auth::id() !== $comments->user_id) {
-            return back()->with('warning', 'You are not authorized to delete this comment.');
-        }
 
         $comments->delete();
 
@@ -65,11 +61,6 @@ class CommentController extends Controller
     {
         $comments = Comment::findOrFail($id);
 
-        // Pastikan hanya pengguna yang memiliki komentar atau admin yang dapat mengedit komentar
-        if (Auth::id() !== $comments->user_id) {
-            return back()->with('warning', 'You are not authorized to edit this comment.');
-        }
-
         return view('admin.data-komentar.edit-komentar-user', compact('comments'));
     }
 
@@ -82,11 +73,6 @@ class CommentController extends Controller
         ]);
 
         $comments = Comment::findOrFail($id);
-
-        // Pastikan hanya pengguna yang memiliki komentar atau admin yang dapat mengedit komentar
-        if (Auth::id() !== $comments->user_id) {
-            return back()->with('warning', 'You are not authorized to update this comment.');
-        }
 
         // Perbarui konten komentar
         $comments->konten = $request->input('konten');

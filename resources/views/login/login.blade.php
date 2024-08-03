@@ -16,6 +16,7 @@
         <div class="relative z-10 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <form class="space-y-6" action="{{ route('postlogin') }}" method="POST">
                 {{ csrf_field() }}
+                <input type="hidden" name="redirect" value="{{ request()->query('redirect') }}">
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" required />
@@ -43,7 +44,8 @@
     
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <script src="{{ asset('js/script.js') }}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             @if (session('success'))
@@ -51,14 +53,16 @@
                     title: 'Berhasil!',
                     text: '{{ session('success') }}',
                     icon: 'success',
-                    confirmButtonText: 'OK'
+                    timer: 3000, // Waktu dalam milidetik (3000ms = 3 detik)
+                    showConfirmButton: false
                 });
             @elseif (session('warning'))
                 Swal.fire({
                     title: 'Error!',
                     text: '{{ session('warning') }}',
                     icon: 'error',
-                    confirmButtonText: 'OK'
+                    timer: 3000, // Waktu dalam milidetik (3000ms = 3 detik)
+                    showConfirmButton: false
                 });
             @endif
         });

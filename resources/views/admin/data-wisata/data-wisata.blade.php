@@ -73,7 +73,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <th class="whitespace-nowrap">NAMA KATEGORI</th>
                                             <th class="text-center whitespace-nowrap">DESKRIPSI</th>
                                             <th class="text-center whitespace-nowrap">ALAMAT</th>
-                                            <th class="text-center whitespace-nowrap">STATUS</th>
                                             <th class="text-center whitespace-nowrap">ACTIONS</th>
                                         </tr>
                                     </thead>
@@ -101,36 +100,34 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         No Category Assigned
                                                     @endif
                                                 </td>
-                                        <td class="">{{ Str::limit($item->deskripsi, 100) }}</td>
-                                        <td class="text-center">{{ $item->alamat }}</td>
-                                        <td class="w-40">
-                                            <div class="flex items-center justify-center text-success"> <i
-                                                    data-lucide="check-square" class="w-4 h-4 mr-2"></i>
-                                                Active </div>
-                                        </td>
-                                        <td class="table-report__action w-56">
-                                            <div class="flex justify-center items-center">
-                                                <a class="flex items-center mr-3"
-                                                    href="{{ route('ubah-data-wisata', $item->id) }}"> <i
-                                                        data-lucide="check-square" class="w-4 h-4 mr-1"></i>
-                                                    Edit </a>
-                                                <form action="{{ route('hapus-data-wisata', $item->id) }}"
-                                                    method="POST" class="inline-block">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="flex items-center text-danger">
-                                                        <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">Tidak ada data yang
-                                                ditemukan.</td>
-                                        </tr>
+                                                <td class="">{{ Str::limit($item->deskripsi, 100) }}</td>
+                                                <td class="text-center">{{ $item->alamat }}</td>
+                                                <td class="table-report__action w-56">
+                                                    <div class="flex justify-center items-center">
+                                                        <a class="flex items-center mr-3"
+                                                            href="{{ route('ubah-data-wisata', $item->id) }}"> <i
+                                                                data-lucide="check-square" class="w-4 h-4 mr-1"></i>
+                                                            Edit </a>
+                                                        <form action="{{ route('hapus-data-wisata', $item->id) }}"
+                                                            method="POST" class="inline-block delete-form"
+                                                            data-id="{{ $item->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button"
+                                                                class="flex items-center text-danger delete-button"
+                                                                data-id="{{ $item->id }}">
+                                                                <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="text-center">Tidak ada data yang
+                                                    ditemukan.</td>
+                                            </tr>
                                         @endforelse
 
                                     </tbody>
@@ -144,20 +141,44 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END: Content -->
     </div>
-    <!-- BEGIN: Dark Mode Switcher-->
-    <div data-url="side-menu-dark-dashboard-overview-3.html"
-        class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box dark:bg-dark-2 border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
-        <div class="mr-4 text-gray-700 dark:text-gray-300">Dark Mode</div>
-        <div class="dark-mode-switcher__toggle border"></div>
-    </div>
-    <!-- END: Dark Mode Switcher-->
 
     <!-- BEGIN: JS Assets-->
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
     <script src="dist/js/app.js"></script>
-    <!-- END: JS Assets-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.delete-button', function(e) {
+                e.preventDefault();
+                var formId = $(this).data('id');
+                var form = $('.delete-form[data-id="' + formId + '"]');
+    
+                Swal.fire({
+                    title: "Apakah Anda yakin?",
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!",
+                    cancelButtonText: "Batal"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Dihapus!",
+                            text: "Data Anda telah dihapus.",
+                            icon: "success"
+                        }).then(() => {
+                            form.submit();
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

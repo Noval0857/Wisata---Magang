@@ -17,13 +17,6 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('data-user') }}"
-                class="side-menu {{ Request::is('data-user') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
-                <div class="side-menu__title"> Data User </div>
-            </a>
-        </li>
-        <li>
             <a href="{{ url('data-wisata') }}"
                 class="side-menu {{ Request::is('data-wisata') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">
@@ -38,6 +31,13 @@
                     </svg>
                 </div>
                 <div class="side-menu__title"> Data Wisata </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('data-user') }}"
+                class="side-menu {{ Request::is('data-user') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
+                <div class="side-menu__title"> Data User </div>
             </a>
         </li>
         <li>

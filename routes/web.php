@@ -18,12 +18,30 @@ Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogi
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/registrasi', [LoginController::class, 'registrasi'])->name('registrasi');
+Route::get('/registrasi-user', [RegistrasiController::class, 'regis-user'])->name('registrasi-user');
+Route::get('/registrasi-email', [LoginController::class, 'regis-email'])->name('registrasi-email');
+
+
+Route::get('register-step-1', [RegistrasiController::class, 'showStep1Form']);
+Route::post('register-step-1', [RegistrasiController::class, 'postStep1Form']);
+
+Route::get('register-step-2', [RegistrasiController::class, 'showStep2Form']);
+Route::post('register-step-2', [RegistrasiController::class, 'postStep2Form']);
+
+Route::get('register-step-3', [RegistrasiController::class, 'showStep3Form']);
+Route::post('register-step-3', [RegistrasiController::class, 'postStep3Form']);
+
+Route::get('register-step-4', [RegistrasiController::class, 'showStep4Form']);
+Route::post('register-step-4', [RegistrasiController::class, 'postStep4Form']);
+
+
+
 
 Route::post('/simpanregistrasi', [RegistrasiController::class, 'simpanregistrasi'])->name('simpanregistrasi');
 
 Route::get('/detail-wisata/{nama_wisata}', [WisataController::class, 'detail'])->name('detail-wisata');
 
-Route::get('/wisata-category/{category}', [WisataController::class, 'showByCategory'])->name('wisata-category');
+Route::get('/wisata-category/{nama_kategori}', [WisataController::class, 'showByCategory'])->name('wisata-category');
 
 // Protected routes (requires authentication)
 Route::group(['middleware' => ['admin']], function () {
@@ -48,7 +66,7 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::get('/komentar', [CommentController::class, 'index'])->name('komentar');
 
-    Route::post('/komentar/approve/{id}', [CommentController::class, 'approveComment'])->name('komentar.approve');
+    Route::post('/komentar/approve/{id}', [CommentController::class, 'approveComment'])->name('approve-komentar');
 
     Route::get('/edit-komentar-user/{id}', [CommentController::class, 'edit_komentar'])->name('edit-komentar-user');
 
