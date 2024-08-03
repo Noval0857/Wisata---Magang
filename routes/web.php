@@ -7,7 +7,16 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('send-test-email', function () {
+    Mail::raw('This is a test email.', function ($message) {
+        $message->to('utuhujay@gmail.com')
+                ->subject('Test Email');
+    });
+
+    return 'Email sent successfully!';
+});
 
 Route::get('/', [WisataController::class, 'home'])->name('home');
 
