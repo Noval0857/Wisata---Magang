@@ -103,7 +103,7 @@ class WisataController extends Controller
     public function updatedata(Request $request, $id)
     {
         $wisata = Wisata::findOrFail($id);
-    
+
         // Validate the input
         $request->validate([
             'nama_wisata' => 'required|string|max:255',
@@ -113,7 +113,7 @@ class WisataController extends Controller
             'google_maps_url' => 'required|url',
             'category_id' => 'required|exists:categories,id', // Ensure the category exists
         ]);
-    
+
         // Update the record
         $wisata->update([
             'nama_wisata' => $request->input('nama_wisata'),
@@ -122,23 +122,23 @@ class WisataController extends Controller
             'google_maps_url' => $request->input('google_maps_url'),
             'category_id' => $request->input('category_id') // Update the category
         ]);
-    
+
         if ($request->hasFile('foto')) {
             // Find the existing photo record
             $fotoWisata = FotoWisata::where('wisata_id', $wisata->id)->first();
-    
+
             // Delete the old photo if it exists
             if ($fotoWisata && file_exists(public_path($fotoWisata->path))) {
                 unlink(public_path($fotoWisata->path));
             }
-    
+
             // Store the new photo
             $foto = $request->file('foto');
             $destinationPath = public_path('fotos');
             $fotoName = time() . '-' . $foto->hashName();
             $foto->move($destinationPath, $fotoName);
             $path = 'fotos/' . $fotoName;
-    
+
             // Update or create the photo record
             FotoWisata::updateOrCreate(
                 ['wisata_id' => $wisata->id],
@@ -148,10 +148,10 @@ class WisataController extends Controller
                 ]
             );
         }
-    
+
         return redirect('admin')->with('success', 'Wisata updated successfully.');
     }
-    
+
 
 
     // hapus data
@@ -219,6 +219,33 @@ class WisataController extends Controller
         return redirect('admin')->with('success', 'Foto wisata berhasil ditambahkan.');
     }
 
+    public function view_ubah_foto_wisata($id)
+    {
+        $foto_wisata = FotoWisata::findOrfail($id);
+        return view('admin.data-wisata.ubah-foto-wisata', compact('foto_wisata'));
+    }
+
+    public function ubah_foto_wisata(Request $request, $id)
+    {
+        $request->validate([
+            'wisata_id' => 'required|exists:wisata,id',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $foto_wisata = FotoWisata::findOrFail($id);
+
+        if ($request->hasFile('foto')) {
+            $imageName = time() . '.' . $request->foto->extension();
+            $request->foto->move(public_path('fotos'), $imageName);
+            $foto_wisata->path = 'fotos/' . $imageName;
+        }
+
+        $foto_wisata->wisata_id = $request->wisata_id;
+        $foto_wisata->save();
+
+        return redirect()->route('view-ubah-foto-wisata', $id)->with('success', 'Foto Wisata updated successfully!');
+    }
+
     public function kategori_wisata()
     {
         $kategoris = Category::all();
@@ -281,10 +308,10 @@ class WisataController extends Controller
     {
         // Mengambil data wisata berdasarkan kategori
         $wisatas = Wisata::whereHas('category', function ($query) use ($nama_kategori) {
-                        $query->where('nama_kategori', $nama_kategori);
-                    })
-                    ->get();
-    
+            $query->where('nama_kategori', $nama_kategori);
+        })
+            ->get();
+
         // Kirim data ke view sesuai dengan kategori yang dipilih
         return view('wisata.wisata-category', compact('wisatas'));
     }

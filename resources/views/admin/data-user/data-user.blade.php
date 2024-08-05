@@ -79,7 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td class="text-center">{{ $item->alamat }}</td>
                                                 <td class="text-center">{{ $item->telepon }}</td>
                                                 <td class="text-center">{{ $item->tanggal_lahir }}</td>
-                                                <td class="text-center">{{ $item->user->role }}</td>
+                                                <td class="text-center">{{ $item->role }}</td>
                                                 <td class="flex justify-center">
                                                     @if ($item->foto_profil)
                                                         <img src="{{ asset('uploads/' . $item->foto_profil) }}" alt="Profile Picture" class="w-10 h-10 rounded-full">

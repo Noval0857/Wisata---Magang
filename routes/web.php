@@ -9,14 +9,14 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 
-Route::get('send-test-email', function () {
-    Mail::raw('This is a test email.', function ($message) {
-        $message->to('utuhujay@gmail.com')
-                ->subject('Test Email');
-    });
+// Route::get('send-test-email', function () {
+//     Mail::raw('This is a test email.', function ($message) {
+//         $message->to('utuhujay@gmail.com')
+//                 ->subject('Test Email');
+//     });
 
-    return 'Email sent successfully!';
-});
+//     return 'Email sent successfully!';
+// });
 
 Route::get('/', [WisataController::class, 'home'])->name('home');
 
@@ -42,6 +42,14 @@ Route::post('register-step-3', [RegistrasiController::class, 'postStep3Form']);
 
 Route::get('register-step-4', [RegistrasiController::class, 'showStep4Form']);
 Route::post('register-step-4', [RegistrasiController::class, 'postStep4Form']);
+
+// Route untuk form lupa password
+Route::get('lupa-password', [UserController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('send-reset-link', [UserController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Route untuk form reset password
+Route::get('reset-password/{token}/{email}', [UserController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [UserController::class, 'reset'])->name('password.update');
 
 
 
@@ -90,6 +98,12 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/tambah-foto-wisata', [WisataController::class, 'viewTambah_foto_wisata'])->name('tambah-foto-wisata');
 
     Route::post('/simpan-foto-wisata', [WisataController::class, 'simpan_foto_wisata'])->name('simpan-foto-wisata');
+
+    Route::get('/view-ubah-foto-wisata/{id}', [WisataController::class, 'viewUbah_foto_wisata'])->name('view-ubah-foto-wisata');
+
+    Route::post('/ubah-foto-wisata/{id}', [WisataController::class, 'ubah_foto_wisata'])->name('ubah-foto-wisata');
+
+    Route::delete('/hapus-foto-wisata/{id}', [WisataController::class, 'hapus_foto_wisata'])->name('hapus-foto-wisata');
 
     // Kategori
 

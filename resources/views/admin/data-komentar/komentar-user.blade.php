@@ -73,7 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <tbody>
                                         @forelse ($comments as $item)
                                             <tr class="intro-x">
-                                                <td class="text-center">{{ $item->user->profile->nama_lengkap ?? 'Anonymous' }}</td>
+                                                <td class="text-center">{{ $item->user->nama_lengkap ?? 'Anonymous' }}</td>
                                                 <td class="text-center">{{ $item->wisata->nama_wisata }}</td>
                                                 <td class="text-center">{{ $item->konten }}</td>
                                                 <td class="text-center">

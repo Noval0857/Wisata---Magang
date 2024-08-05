@@ -20,7 +20,7 @@
             class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="mx-auto w-32 h-32 relative border-4 mt-2 border-white rounded-full overflow-hidden">
                 <img class="object-cover object-center h-32 w-full"
-                    src='{{ $profile->foto_profil ? asset('uploads/' . $profile->foto_profil) : asset('images/profil-blank.webp') }}'
+                    src='{{ $user->foto_profil ? asset('uploads/' . $user->foto_profil) : asset('images/profil-blank.webp') }}'
                     alt='Profile Picture'>
             </div>
             <div class="text-center mt-2">
@@ -44,24 +44,24 @@
                     <div class="mb-4">
                         <label for="nama_lengkap" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
                         <input type="text" name="nama_lengkap" id="nama_lengkap"
-                            value="{{ old('nama_lengkap', $profile->nama_lengkap) }}"
+                            value="{{ old('nama_lengkap', $user->nama_lengkap) }}"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     </div>
                     <div class="mb-4">
                         <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
                         <textarea name="alamat" id="alamat" rows="3"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ old('alamat', $profile->alamat) }}</textarea>
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ old('alamat', $user->alamat) }}</textarea>
                     </div>
                     <div class="mb-4">
                         <label for="telepon" class="block text-sm font-medium text-gray-700">Telepon</label>
                         <input type="text" name="telepon" id="telepon"
-                            value="{{ old('telepon', $profile->telepon) }}"
+                            value="{{ old('telepon', $user->telepon) }}"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     </div>
                     <div class="mb-4">
                         <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
                         <input type="date" name="tanggal_lahir" id="tanggal_lahir"
-                            value="{{ old('tanggal_lahir', $profile->tanggal_lahir) }}"
+                            value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     </div>
                     <div class="mb-4">

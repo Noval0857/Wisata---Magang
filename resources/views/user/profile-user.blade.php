@@ -20,9 +20,9 @@
             class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center pb-10">
                 <img class="w-40 h-40 mb-3 mt-10 rounded-full shadow-lg"
-                    src='{{ $profile->foto_profil ? asset('uploads/' . $profile->foto_profil) : asset('images/profil-blank.webp') }}'
+                    src='{{ $user->foto_profil ? asset('uploads/' . $user->foto_profil) : asset('images/profil-blank.webp') }}'
                     alt='Profile Picture' />
-                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $profile->nama_lengkap }}</h5>
+                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $user->nama_lengkap }}</h5>
                 <div class="flex mt-4 md:mt-6">
                     <button type="submit"
                         class="w-full rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2"

@@ -92,10 +92,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <td class="table-report__action w-56">
                                                                 <div class="flex justify-center items-center">
                                                                     <a class="flex items-center mr-3"
-                                                                        href="{{ route('ubah-data-wisata', $item->id) }}"> <i
+                                                                        href="{{ route('view-ubah-foto-wisata', $item->id) }}"> <i
                                                                             data-lucide="check-square" class="w-4 h-4 mr-1"></i>
                                                                         Edit </a>
-                                                                    <form action="{{ route('hapus-data-wisata', $item->id) }}"
+                                                                    <form action="{{ route('hapus-foto-wisata', $item->id) }}"
                                                                         method="POST" class="inline-block delete-form"
                                                                         data-id="{{ $item->id }}">
                                                                         @csrf

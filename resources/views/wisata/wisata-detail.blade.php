@@ -198,9 +198,9 @@
                                     <p
                                         class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                                         <img class="mr-2 w-6 h-6 rounded-full"
-                                            src="{{ $comment->user->profile->foto_profil ? asset('uploads/' . $comment->user->profile->foto_profil) : asset('images/profil-blank.webp') }}"
+                                            src="{{ $comment->user->foto_profil ? asset('uploads/' . $comment->user->foto_profil) : asset('images/profil-blank.webp') }}"
                                             alt="Profile Picture">
-                                        {{ $comment->user->profile->nama_lengkap ?? 'Anonymous' }}
+                                        {{ $comment->user->nama_lengkap ?? 'Anonymous' }}
                                     </p>
                                     <p class="text-sm text-gray-600 dark:text-gray-400">
                                         <time pubdate datetime="{{ $comment->created_at->toDateString() }}"

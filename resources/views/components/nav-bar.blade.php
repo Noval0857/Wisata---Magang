@@ -17,10 +17,10 @@
                     @if (auth()->check())
                         @php
                             $user = auth()->user();
-                            $userProfile = $user->profile;
+                            // $userProfile = $user->profile;
                             $profileImage =
-                                $userProfile && $userProfile->foto_profil
-                                    ? asset('uploads/' . $userProfile->foto_profil)
+                                $user && $user->foto_profil
+                                    ? asset('uploads/' . $user->foto_profil)
                                     : asset('images/profil-blank.webp');
                         @endphp
                         <img class="w-8 h-8 rounded-full" src="{{ $profileImage }}" alt="user photo">
@@ -36,11 +36,10 @@
                         @if (auth()->check())
                             @php
                                 $loggedInUser = auth()->user();
-                                $userProfile = $loggedInUser->profile;
                             @endphp
-                            @if ($userProfile)
+                            @if ($loggedInUser)
                                 <span
-                                    class="block text-sm text-gray-900 dark:text-white">{{ $userProfile->nama_lengkap }}</span>
+                                    class="block text-sm text-gray-900 dark:text-white">{{ $loggedInUser->nama_lengkap }}</span>
                                 <span
                                     class="block text-sm text-gray-500 truncate dark:text-gray-400">{{ $loggedInUser->email }}</span>
                             @else
