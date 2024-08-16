@@ -10,6 +10,13 @@
     <link rel="icon" href="{{ asset('images/logodispar.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+    <style>
+        .fixed-dimensions {
+            width: 1920px;
+            height: 890px;
+            object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +44,7 @@
                 </div>
             </section> --}}
             <div id="gallery"
-                class="relative w-full h-[200px] sm:h-[355px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[600px] mx-auto"
+                class="relative w-full h-[300px] sm:h-[355px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[700px] mx-auto"
                 data-carousel="slide">
                 <!-- Carousel wrapper -->
                 <div class="relative h-full overflow-hidden">
@@ -45,7 +52,7 @@
                         <div class="hidden duration-700 ease-in-out {{ $index === 0 ? 'block' : '' }}"
                             data-carousel-item>
                             <img src="{{ asset($foto->path) }}"
-                                class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                class="absolute block max-w-full h-auto fixed-dimensions -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                 alt="{{ $wisatas->nama_wisata }}">
                         </div>
                     @endforeach

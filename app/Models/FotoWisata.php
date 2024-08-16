@@ -9,8 +9,12 @@ class FotoWisata extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['wisata_id','nama_foto_wisata', 'path'];
+    protected $table = 'foto_wisatas'; // Ensure this is the correct table name
 
+    protected $primaryKey = 'id';
+
+    protected $fillable = ['wisata_id', 'nama_foto_wisata', 'path'];
+    
     public function wisata()
     {
         return $this->belongsTo(Wisata::class, 'wisata_id');

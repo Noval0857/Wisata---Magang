@@ -109,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="6" class="text-center">Tidak ada komentar yang
+                                                <td colspan="6" class="text-center">Tidak ada user yang
                                                     ditemukan.</td>
                                             </tr>
                                         @endforelse

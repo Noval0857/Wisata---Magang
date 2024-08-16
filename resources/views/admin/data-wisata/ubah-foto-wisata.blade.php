@@ -22,7 +22,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="author" content="LEFT4CODE">
     <title>Ubah Foto Wisata</title>
     <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="dist/css/app.css" />
+    <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
@@ -81,8 +81,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                         <div class="w-full mt-3 xl:mt-0 flex-1">
                                             <select name="wisata_id" id="wisata_id" class="form-control">
-                                                @foreach ($foto_wisata as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama_wisata }}
+                                                @foreach ($wisata as $item)
+                                                    <option value="{{ $item->id }}"{{ $item->id == $foto_wisata->wisata_id ? 'selected' : '' }}>{{ $item->nama_wisata }}
                                                     </option>
                                                 @endforeach
                                             </select>

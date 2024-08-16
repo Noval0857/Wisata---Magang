@@ -76,45 +76,91 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </thead>
                                     <tbody>
                                         @foreach ($foto_wisata as $item)
-                                            @foreach ($item->fotoWisata as $index => $foto)
-                                                <tr class="intro-x">
-                                                    @if ($index !== 0)
-                                                        <tr>
-                                                            <td>
-                                                                <div>
-                                                                    <img src="{{ asset($foto->path) }}" alt="{{ $item->nama_wisata }}"
-                                                                        class="w-52">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_wisata }}</a>
-                                                            </td>
-                                                            <td class="table-report__action w-56">
-                                                                <div class="flex justify-center items-center">
-                                                                    <a class="flex items-center mr-3"
-                                                                        href="{{ route('view-ubah-foto-wisata', $item->id) }}"> <i
-                                                                            data-lucide="check-square" class="w-4 h-4 mr-1"></i>
-                                                                        Edit </a>
-                                                                    <form action="{{ route('hapus-foto-wisata', $item->id) }}"
-                                                                        method="POST" class="inline-block delete-form"
-                                                                        data-id="{{ $item->id }}">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="button"
-                                                                            class="flex items-center text-danger delete-button"
-                                                                            data-id="{{ $item->id }}">
-                                                                            <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
-                                                                            Delete
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                </tr>
-                                            @endforeach
+                                            <tr class="intro-x">
+                                                <td>
+                                                    <div>
+                                                        <img src="{{ asset($item->path) }}"
+                                                            alt="{{ $item->nama_foto_wisata }}" class="w-52">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href=""
+                                                        class="font-medium whitespace-nowrap">{{ $item->wisata->nama_wisata }}</a>
+                                                </td>
+                                                <td class="table-report__action w-56">
+                                                    <div class="flex justify-center items-center">
+                                                        <a class="flex items-center mr-3"
+                                                            href="{{ url('view-ubah-foto-wisata', $item->id) }}">
+                                                            <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit
+                                                        </a>
+                                                        <form action="{{ route('hapus-foto-wisata', $item->id) }}"
+                                                            method="POST" class="inline-block delete-form"
+                                                            data-id="{{ $item->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button"
+                                                                class="flex items-center text-danger delete-button"
+                                                                data-id="{{ $item->id }}">
+                                                                <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
+                                        {{-- @if ($foto_wisata->isNotEmpty())
+                                            @foreach ($foto_wisata as $item)
+                                                @if ($item->fotoWisata->isNotEmpty())
+                                                    @foreach ($item->fotoWisata as $index => $foto)
+                                                        @if ($index !== 0)
+                                                            <tr class="intro-x">
+                                                                <td>
+                                                                    <div>
+                                                                        <img src="{{ asset($foto->path) }}"
+                                                                            alt="{{ $item->nama_wisata }}"
+                                                                            class="w-52">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a href=""
+                                                                        class="font-medium whitespace-nowrap">{{ $item->nama_wisata }}</a>
+                                                                </td>
+                                                                <td class="table-report__action w-56">
+                                                                    <div class="flex justify-center items-center">
+                                                                        <a class="flex items-center mr-3"
+                                                                            href="{{ url('view-ubah-foto-wisata', $foto->id) }}">
+                                                                            <i data-lucide="check-square"
+                                                                                class="w-4 h-4 mr-1"></i> Edit
+                                                                        </a>
+                                                                        <form
+                                                                            action="{{ route('hapus-foto-wisata', $foto->id) }}"
+                                                                            method="POST"
+                                                                            class="inline-block delete-form"
+                                                                            data-id="{{ $foto->id }}">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="button"
+                                                                                class="flex items-center text-danger delete-button"
+                                                                                data-id="{{ $foto->id }}">
+                                                                                <i data-lucide="trash-2"
+                                                                                    class="w-4 h-4 mr-1"></i> Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3" class="text-center">No data available</td>
+                                            </tr>
+                                        @endif --}}
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -131,7 +177,39 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
     <script src="dist/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- END: JS Assets-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.delete-button', function(e) {
+                e.preventDefault();
+                var formId = $(this).data('id');
+                var form = $('.delete-form[data-id="' + formId + '"]');
+    
+                Swal.fire({
+                    title: "Apakah Anda yakin?",
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!",
+                    cancelButtonText: "Batal"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Dihapus!",
+                            text: "Data Anda telah dihapus.",
+                            icon: "success"
+                        }).then(() => {
+                            form.submit();
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

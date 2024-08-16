@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WisataController;
+use App\Http\Controllers\FotoWisataController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
@@ -93,17 +94,17 @@ Route::group(['middleware' => ['admin']], function () {
 
     // Foto Wisata
 
-    Route::get('/foto-wisata', [WisataController::class, 'tampil_foto_wisata'])->name('foto-wisata');
+    Route::get('/foto-wisata', [FotoWisataController::class, 'tampil_foto_wisata'])->name('foto-wisata');
 
-    Route::get('/tambah-foto-wisata', [WisataController::class, 'viewTambah_foto_wisata'])->name('tambah-foto-wisata');
+    Route::get('/tambah-foto-wisata', [FotoWisataController::class, 'viewTambah_foto_wisata'])->name('tambah-foto-wisata');
 
-    Route::post('/simpan-foto-wisata', [WisataController::class, 'simpan_foto_wisata'])->name('simpan-foto-wisata');
+    Route::post('/simpan-foto-wisata', [FotoWisataController::class, 'simpan_foto_wisata'])->name('simpan-foto-wisata');
 
-    Route::get('/view-ubah-foto-wisata/{id}', [WisataController::class, 'viewUbah_foto_wisata'])->name('view-ubah-foto-wisata');
+    Route::get('/view-ubah-foto-wisata/{id}', [FotoWisataController::class, 'view_ubah_foto_wisata'])->name('view-ubah-foto-wisata');
 
-    Route::post('/ubah-foto-wisata/{id}', [WisataController::class, 'ubah_foto_wisata'])->name('ubah-foto-wisata');
+    Route::post('/ubah-foto-wisata/{id}', [FotoWisataController::class, 'ubah_foto_wisata'])->name('ubah-foto-wisata');
 
-    Route::delete('/hapus-foto-wisata/{id}', [WisataController::class, 'hapus_foto_wisata'])->name('hapus-foto-wisata');
+    Route::delete('/hapus-foto-wisata/{id}', [FotoWisataController::class, 'hapus_foto_wisata'])->name('hapus-foto-wisata');
 
     // Kategori
 

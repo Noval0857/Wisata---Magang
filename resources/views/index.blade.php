@@ -11,7 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
-
+    <style>
+        .fixed-dimensions {
+            width: 700px;
+            height: 300px;
+            object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+        }
+    </style>
 </head>
 
 <body>
@@ -51,7 +57,7 @@
                                 @endphp
                                 @if ($firstFoto)
                                     <img src="{{ asset($firstFoto->path) }}" alt="{{ $wisata->nama_wisata }}"
-                                        class="w-full h-full object-cover">
+                                        class="w-full h-full object-cover fixed-dimensions">
                                 @else
                                     <img src="{{ asset('path/to/default/image.jpg') }}" alt="Default Image"
                                         class="w-full h-full object-cover">

@@ -63,7 +63,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             {{-- <i data-lucide="navigation" class="block w-12 h-12 text-primary mx-auto"></i> --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-map-pinned block w-12 h-12 text-primary mx-auto">
+                                stroke-linejoin="round"
+                                class="lucide lucide-map-pinned block w-12 h-12 text-primary mx-auto">
                                 <path d="M18 8c0 4.5-6 9-6 9s-6-4.5-6-9a6 6 0 0 1 12 0" />
                                 <circle cx="12" cy="8" r="2" />
                                 <path
@@ -103,6 +104,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
     <script src="dist/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- END: JS Assets-->
 
     <script>
@@ -125,6 +127,27 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 updateCount();
             });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    timer: 3000, // Waktu dalam milidetik (3000ms = 3 detik)
+                    showConfirmButton: false
+                });
+            @elseif (session('warning'))
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ session('warning') }}',
+                    icon: 'error',
+                    timer: 3000, // Waktu dalam milidetik (3000ms = 3 detik)
+                    showConfirmButton: false
+                });
+            @endif
         });
     </script>
 </body>
