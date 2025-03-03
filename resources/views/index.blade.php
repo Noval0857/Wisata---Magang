@@ -33,6 +33,7 @@
                 <div class="w-full">
                     <h2 class="leading-tight font-bold sm:text-2xl md:text-4xl lg:text-4xl">Kota
                         Banjarmasin</h2>
+                        <h2>tes</h2>
                     <p class="mt-2 sm:text-sm md:text-2xl lg:text-2xl leading-relaxed text-justify">Kota
                         Banjarmasin, yang dikenal sebagai "Kota Seribu Sungai,"
                         merupakan ibu kota provinsi Kalimantan Selatan. Terletak di delta sungai Barito dan Martapura,
